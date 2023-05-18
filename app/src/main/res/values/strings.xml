@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">BIIT HRM System</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="biit_hrm_system">BIIT HRM SYSTEM</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="job_title">Job Title</string>
+    <string name="enter_your_email_text">Enter Your Email text</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="enter_your_password">Enter Your Password</string>
+    <string name="login">Login</string>
+    <string name="dont_have_an_account">Dont Have an Account?</string>
+    <string name="create_account">Create Account</string>
+    <string name="first_name">First Name</string>
+    <string name="welcome_to_signup_page">Welcome To SignUp Page</string>
+    <string name="last_name">Last Name</string>
+
+    <string-array name="job_array">
+        <item>Job Title </item>
+        <item>Android Developer </item>
+        <item>Ios Developer </item>
+        <item>Web Developer </item>
+        <item>Software Engineer </item>
+    </string-array>
+
+    <string-array name="qualification_array">
+        <item>Qualification </item>
+        <item>BS Software Engineer </item>
+        <item>BS MATH </item>
+        <item>Technician </item>
+        <item>Mechanic </item>
+    </string-array>
+
+    <string-array name="gender_array">
+        <item>Select Gender </item>
+        <item>male </item>
+        <item>female </item>
+    </string-array>
+    <string-array name="degree_array">
+        <item>Select Degree </item>
+        <item>Software </item>
+        <item>Mechanical </item>
+        <item>Electronic </item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="jobs">Jobs</string>
+    <string name="profile">Profile</string>
+    <string name="find_your_dream_job">Find Your Dream \nJobs</string>
+    <string name="find_your_dream_job_now_and_feel_the_nconvinence_with_biit">Find Your Dream Job now and feel the\nconvinence with BIIT</string>
+    <string name="salary">Salary</string>
+    <string name="experience">Experience</string>
+    <string name="last_date_to_apply">Last Date To Apply</string>
+    <string name="location">Location</string>
+    <string name="description">Description</string>
+</resources>

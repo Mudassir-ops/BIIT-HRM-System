@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_splash">
+
+    <fragment
+        android:id="@+id/navigation_splash"
+        android:name="com.example.biithrmsystem.ui.fragments.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/spalsh_to_home"
+            app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/spalsh_to_login"
+            app:destination="@id/navigation_login" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.biithrmsystem.ui.fragments.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/home_to_complete_profile"
+            app:destination="@id/navigation2_complete_profile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_login"
+        android:name="com.example.biithrmsystem.ui.fragments.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/login_to_signup"
+            app:destination="@id/navigation_sign_up" />
+        <action
+            android:id="@+id/login_to_home_screen"
+            app:destination="@id/navigation_home" />
+
+        <action
+            android:id="@+id/login_to_add_job"
+            app:destination="@id/navigation_add_job" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_sign_up"
+        android:name="com.example.biithrmsystem.ui.fragments.signup.SignUpFragment"
+        android:label="SignUp"
+        tools:layout="@layout/fragment_sign_up">
+
+        <action
+            android:id="@+id/signup_to_login"
+            app:destination="@id/navigation_login" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_add_job"
+        android:name="com.example.biithrmsystem.ui.fragments.addjob.AddJobFragment"
+        android:label="AddJob"
+        tools:layout="@layout/fragment_add_job" />
+
+
+    <fragment
+        android:id="@+id/navigation2_complete_profile"
+        android:name="com.example.biithrmsystem.ui.fragments.signup.CompleteProfileFragment"
+        android:label="Complete Profile"
+        tools:layout="@layout/fragment_complete_profile">
+        <action
+            android:id="@+id/complete_to_edit_profile"
+            app:destination="@id/navigation2_edit_profile" />
+
+        <action
+            android:id="@+id/complete_to_edit_education"
+            app:destination="@id/navigation2_edit_education" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation2_edit_profile"
+        android:name="com.example.biithrmsystem.ui.fragments.edit_profile.EditPorfileFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_edit_porfile" />
+
+    <fragment
+        android:id="@+id/navigation2_edit_education"
+        android:name="com.example.biithrmsystem.ui.fragments.educaiton.EducationEditFragment"
+        android:label="Edit Education Fragment"
+        tools:layout="@layout/fragment_education_edit" />
+</navigation>

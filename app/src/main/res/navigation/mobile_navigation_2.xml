@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation2_home">
+
+
+    <fragment
+        android:id="@+id/navigation2_home"
+        android:name="com.example.biithrmsystem.ui.fragments.home.home_bottom_navigation.HomeInnerFragment"
+        android:label="HomeInner"
+        tools:layout="@layout/fragment_home_inner">
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation2_jobs"
+        android:name="com.example.biithrmsystem.ui.fragments.home.home_bottom_navigation.JobsInnerFragment"
+        android:label="JobsInner"
+        tools:layout="@layout/fragment_jobs_inner" />
+
+    <fragment
+        android:id="@+id/navigation2_profile"
+        android:name="com.example.biithrmsystem.ui.fragments.home.home_bottom_navigation.ProfileInnerFragment"
+        android:label="ProfileInner"
+        tools:layout="@layout/fragment_profile_inner" />
+
+
+</navigation>
