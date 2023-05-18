@@ -1,4 +1,4 @@
-package com.example.biithrmsystem.ui.fragments.educaiton;
+package com.example.biithrmsystem.ui.fragments.experience_edit;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -6,22 +6,19 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.biithrmsystem.R;
 import com.example.biithrmsystem.api.datamodel.Education;
+import com.example.biithrmsystem.api.datamodel.Experience;
 import com.example.biithrmsystem.commons.SharedPreferences;
-import com.example.biithrmsystem.databinding.FragmentCompleteProfileBinding;
-import com.example.biithrmsystem.databinding.FragmentEditPorfileBinding;
 import com.example.biithrmsystem.databinding.FragmentEducationEditBinding;
+import com.example.biithrmsystem.databinding.FragmentExperienceEditBinding;
 import com.example.biithrmsystem.repositories.Repository;
 
 import java.text.SimpleDateFormat;
@@ -30,14 +27,14 @@ import java.util.Locale;
 import java.util.Objects;
 
 
-public class EducationEditFragment extends Fragment {
+public class ExperienceEditFragment extends Fragment {
 
-    private FragmentEducationEditBinding binding;
+    private FragmentExperienceEditBinding binding;
+    private Repository repository;
+
     final Calendar myCalendar1 = Calendar.getInstance();
     final Calendar myCalendar2 = Calendar.getInstance();
-    private Repository repository;
-    private String degree = "";
-    String[] degreArray = new String[5];
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,7 +45,7 @@ public class EducationEditFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentEducationEditBinding.inflate(inflater, container, false);
+        binding = FragmentExperienceEditBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -56,9 +53,6 @@ public class EducationEditFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.headerLayout.tvHeader.setText("Education");
-        degreArray = getResources().getStringArray(R.array.degree_array);
-
         DatePickerDialog.OnDateSetListener date = (view1, year, month, day) -> {
             myCalendar1.set(Calendar.YEAR, year);
             myCalendar1.set(Calendar.MONTH, month);
@@ -72,34 +66,29 @@ public class EducationEditFragment extends Fragment {
             updateLabel2();
 
         };
+
         binding.etStartDate.setOnClickListener(v -> new DatePickerDialog(requireContext(), date, myCalendar1.get(Calendar.YEAR), myCalendar1.get(Calendar.MONTH), myCalendar1.get(Calendar.DAY_OF_MONTH)).show());
         binding.etEndDate.setOnClickListener(v -> new DatePickerDialog(requireContext(), date1, myCalendar2.get(Calendar.YEAR), myCalendar2.get(Calendar.MONTH), myCalendar2.get(Calendar.DAY_OF_MONTH)).show());
-        binding.spinnerDegree.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                degree = degreArray[position];
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+        binding.btnSave.setOnClickListener(v -> {
+            Experience experience = new Experience();
+            experience.setUid(SharedPreferences.GetLogInUserId());
+            experience.setCompany(Objects.requireNonNull(binding.etInstitiute.getText()).toString());
+            experience.setStartdate(Objects.requireNonNull(binding.etStartDate.getText()).toString());
+            experience.setEnddate(Objects.requireNonNull(binding.etEndDate.getText()).toString());
+            experience.setTitle(Objects.requireNonNull(binding.etBoard.getText()).toString());
+            String workingNow = "";
+            if (binding.checkbox.isChecked()) {
+                workingNow = "YES";
+            } else {
+                workingNow = "NO";
             }
+            experience.setCurrentwork(workingNow);
+            experience.setOtherskill(Objects.requireNonNull(binding.etAnyOtherSkill.getText()).toString());
+            repository.postExperience(experience);
         });
 
-        binding.btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Education education = new Education();
-                education.setDegree(degree);
-                education.setUid(SharedPreferences.GetLogInUserId());
-                education.setInstitute(Objects.requireNonNull(binding.etInstitiute.getText()).toString());
-                education.setBoard(Objects.requireNonNull(binding.etBoard.getText()).toString());
-                education.setStartdate(Objects.requireNonNull(binding.etStartDate.getText()).toString());
-                education.setEnddate(Objects.requireNonNull(binding.etEndDate.getText()).toString());
-                repository.postEducation(education);
-            }
-        });
-        repository.postEducationModelMutableLiveData.observe(getViewLifecycleOwner(), s -> {
+        repository.postExperienceModelMutableLiveData.observe(getViewLifecycleOwner(), s -> {
             Toast.makeText(requireContext(), "Posted" + s, Toast.LENGTH_LONG).show();
             Navigation.findNavController(view).navigateUp();
 

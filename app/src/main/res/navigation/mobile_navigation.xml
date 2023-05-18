@@ -78,6 +78,10 @@
         <action
             android:id="@+id/complete_to_edit_education"
             app:destination="@id/navigation2_edit_education" />
+
+        <action
+            android:id="@+id/complete_to_edit_experience"
+            app:destination="@id/navigation2_edit_experience" />
     </fragment>
 
     <fragment
@@ -91,4 +95,11 @@
         android:name="com.example.biithrmsystem.ui.fragments.educaiton.EducationEditFragment"
         android:label="Edit Education Fragment"
         tools:layout="@layout/fragment_education_edit" />
+
+    <fragment
+        android:id="@+id/navigation2_edit_experience"
+        android:name="com.example.biithrmsystem.ui.fragments.experience_edit.ExperienceEditFragment"
+        android:label="Edit Experience Fragment"
+        tools:layout="@layout/fragment_experience_edit" />
+
 </navigation>

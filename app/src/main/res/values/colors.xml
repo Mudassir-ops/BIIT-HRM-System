@@ -7,4 +7,5 @@
     <color name="light_white">#F3EDED</color>
     <color name="light_white_less20">#99F3EDED</color>
     <color name="app_icon_color">#0C70BF</color>
+    <color name="job_bg_color">#807FB1D8</color>
 </resources>

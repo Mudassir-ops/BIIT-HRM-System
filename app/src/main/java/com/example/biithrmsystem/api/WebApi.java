@@ -1,5 +1,8 @@
 package com.example.biithrmsystem.api;
 
+import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
+import com.example.biithrmsystem.api.datamodel.Education;
+import com.example.biithrmsystem.api.datamodel.Experience;
 import com.example.biithrmsystem.api.datamodel.PostJobModel;
 import com.example.biithrmsystem.api.datamodel.UserSignInResponse;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,9 +29,14 @@ public interface WebApi {
     @GET("User/UserGet/{id}")
     Call<List<UserSignInResponse>> getUser(@Path(value = "id", encoded = true) int userId);
 
+    @POST("Education/EducationPost")
+    Call<String> postEducation(@Body Education education);
 
-//    @POST("Education/EducationPost")
-//    Call<List<UserSignInResponse>> postEducation(@Path(value = "id", encoded = true) int userId);
+    @POST("Expereince/ExperiencePost")
+    Call<String> ExperiencePost(@Body Experience experience);
+
+    @GET("JobApplication/AllJobApplicationGet")
+    Call<List<AllJobsReponse>> AllJobApplicationGet();
 
 
 }

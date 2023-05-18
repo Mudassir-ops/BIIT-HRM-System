@@ -7,6 +7,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.biithrmsystem.api.WebService;
+import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
+import com.example.biithrmsystem.api.datamodel.Education;
+import com.example.biithrmsystem.api.datamodel.Experience;
 import com.example.biithrmsystem.api.datamodel.PostJobModel;
 import com.example.biithrmsystem.api.datamodel.UserSignInResponse;
 
@@ -23,6 +26,9 @@ public class Repository {
     public MutableLiveData<UserSignInResponse> userSignInResponseLiveData = new MutableLiveData<>();
     public MutableLiveData<List<UserSignInResponse>> getUser = new MutableLiveData<List<UserSignInResponse>>();
     public MutableLiveData<String> postJobModelMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<String> postEducationModelMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<String> postExperienceModelMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<AllJobsReponse>> allJobsReponseMutableLiveData = new MutableLiveData<>();
 
     public MutableLiveData<String> getPostJobModelMutableLiveData() {
         return postJobModelMutableLiveData;
@@ -34,6 +40,18 @@ public class Repository {
 
     public MutableLiveData<UserSignInResponse> getUserSignInResponseLiveData() {
         return userSignInResponseLiveData;
+    }
+
+    public MutableLiveData<String> getPostEducationModelMutableLiveData() {
+        return postEducationModelMutableLiveData;
+    }
+
+    public MutableLiveData<String> getPostExperienceModelMutableLiveData() {
+        return postExperienceModelMutableLiveData;
+    }
+
+    public MutableLiveData<List<AllJobsReponse>> getAllJobsReponseMutableLiveData() {
+        return allJobsReponseMutableLiveData;
     }
 
     public LiveData<UserSignInResponse> userSignIn(String email, String password) {
@@ -75,10 +93,8 @@ public class Repository {
             @Override
             public void onResponse(@NonNull Call<List<UserSignInResponse>> call, @NonNull Response<List<UserSignInResponse>> response) {
                 Log.e("sadsad", "onResponse: asdsa" + response);
+                getUser.postValue(response.body());
 
-                if (response.isSuccessful()) {
-                    getUser.postValue(response.body());
-                }
             }
 
             @Override
@@ -90,22 +106,55 @@ public class Repository {
     }
 
 
-    public void postEducation(int uid) {
-        WebService.getWebApi().getUser(uid).enqueue(new Callback<List<UserSignInResponse>>() {
+    public void postEducation(Education education) {
+        WebService.getWebApi().postEducation(education).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(@NonNull Call<List<UserSignInResponse>> call, @NonNull Response<List<UserSignInResponse>> response) {
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 Log.e("sadsad", "onResponse: asdsa" + response);
+                postEducationModelMutableLiveData.postValue(response.message());
 
-                if (response.isSuccessful()) {
-                    getUser.postValue(response.body());
-                }
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<UserSignInResponse>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 Log.e("sadsad", "onResponse: asdsa" + t);
 //                userSignInResponseLiveData.postValue(null);
             }
         });
     }
+
+    public void postExperience(Experience experience) {
+        WebService.getWebApi().ExperiencePost(experience).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                Log.e("sadsad", "onResponse: asdsa" + response);
+                postExperienceModelMutableLiveData.postValue(response.message());
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponse: asdsa" + t);
+//                userSignInResponseLiveData.postValue(null);
+            }
+        });
+    }
+
+    public void AllJobApplicationGet() {
+        WebService.getWebApi().AllJobApplicationGet().enqueue(new Callback<List<AllJobsReponse>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<AllJobsReponse>> call, @NonNull Response<List<AllJobsReponse>> response) {
+                Log.e("sadsad", "onResponse: asdsa" + response.body());
+                allJobsReponseMutableLiveData.postValue(response.body());
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<AllJobsReponse>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponse: asdsa" + t);
+//                userSignInResponseLiveData.postValue(null);
+            }
+        });
+    }
+
 }

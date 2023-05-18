@@ -18,7 +18,7 @@ public class UserSignInResponse {
     @SerializedName("Uid")
     public int uid;
     @SerializedName("Fname")
-    public String fname="";
+    public String fname = "";
     @SerializedName("Lname")
     public String lname;
     @SerializedName("email")

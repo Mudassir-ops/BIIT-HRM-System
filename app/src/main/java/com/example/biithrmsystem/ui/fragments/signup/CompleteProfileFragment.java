@@ -65,6 +65,9 @@ public class CompleteProfileFragment extends Fragment {
             binding.cardviewPerson.setVisibility(View.INVISIBLE);
             binding.cardviewEducation.setVisibility(View.INVISIBLE);
             binding.cardviewExperience.setVisibility(View.INVISIBLE);
+
+            Navigation.findNavController(view).navigate(R.id.complete_to_edit_experience);
+
         });
         repository.getUser.observe(getViewLifecycleOwner(), userSignInResponses -> {
             Glide.with(requireView()).load(userSignInResponses.get(0).image).placeholder(R.drawable.admin).into(binding.ivApplicantDp);
