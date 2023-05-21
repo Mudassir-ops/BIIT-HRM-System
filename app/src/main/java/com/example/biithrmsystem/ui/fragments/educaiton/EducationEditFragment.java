@@ -2,25 +2,20 @@ package com.example.biithrmsystem.ui.fragments.educaiton;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.navigation.Navigation;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
 import com.example.biithrmsystem.R;
 import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.commons.SharedPreferences;
-import com.example.biithrmsystem.databinding.FragmentCompleteProfileBinding;
-import com.example.biithrmsystem.databinding.FragmentEditPorfileBinding;
 import com.example.biithrmsystem.databinding.FragmentEducationEditBinding;
 import com.example.biithrmsystem.repositories.Repository;
 
@@ -32,12 +27,12 @@ import java.util.Objects;
 
 public class EducationEditFragment extends Fragment {
 
-    private FragmentEducationEditBinding binding;
     final Calendar myCalendar1 = Calendar.getInstance();
     final Calendar myCalendar2 = Calendar.getInstance();
+    String[] degreArray = new String[5];
+    private FragmentEducationEditBinding binding;
     private Repository repository;
     private String degree = "";
-    String[] degreArray = new String[5];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

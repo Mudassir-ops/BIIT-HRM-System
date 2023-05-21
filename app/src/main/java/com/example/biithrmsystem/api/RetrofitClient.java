@@ -1,7 +1,6 @@
 package com.example.biithrmsystem.api;
 
 import com.example.biithrmsystem.commons.Appconstants;
-import com.example.biithrmsystem.commons.SharedPreferences;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -16,6 +15,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     private static Retrofit mInstance;
+
+    private RetrofitClient() {
+    }
 
     public static Retrofit getInstance() {
 
@@ -48,8 +50,5 @@ public class RetrofitClient {
                     .build();
         }
         return mInstance;
-    }
-
-    private RetrofitClient() {
     }
 }

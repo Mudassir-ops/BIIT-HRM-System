@@ -1,7 +1,5 @@
 package com.example.biithrmsystem.api.datamodel;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.List;
 
 public class User {
@@ -14,7 +12,7 @@ public class User {
     String fname;
     String lname;
     String email;
-//    @JsonIgnore
+    //    @JsonIgnore
 //    int mobile;
     String cnic;
     String dob;
@@ -22,6 +20,7 @@ public class User {
     String address;
     String password;
     String role;
+    String image;
 
     public List<String> getEducations() {
         return educations;
@@ -83,10 +82,6 @@ public class User {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
 //    public int getMobile() {
 //        return mobile;
 //    }
@@ -94,6 +89,10 @@ public class User {
 //    public void setMobile(int mobile) {
 //        this.mobile = mobile;
 //    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getCnic() {
         return cnic;
@@ -150,7 +149,5 @@ public class User {
     public void setImage(String image) {
         this.image = image;
     }
-
-    String image;
 
 }

@@ -1,18 +1,23 @@
 package com.example.biithrmsystem.ui.fragments.home.home_bottom_navigation;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.example.biithrmsystem.R;
 import com.example.biithrmsystem.adapter.AllJobsAdapter;
 import com.example.biithrmsystem.api.datamodel.Job;
+import com.example.biithrmsystem.commons.Appconstants;
 import com.example.biithrmsystem.databinding.FragmentHomeInnerBinding;
 import com.example.biithrmsystem.repositories.Repository;
 
@@ -20,10 +25,9 @@ import java.util.ArrayList;
 
 
 public class HomeInnerFragment extends Fragment implements AllJobsAdapter.ItemClickListener {
-
+    AllJobsAdapter adapter;
     private FragmentHomeInnerBinding binding;
     private Repository repository;
-    AllJobsAdapter adapter;
     private ArrayList<Job> listOfAllJobs;
 
     @Override
@@ -45,24 +49,48 @@ public class HomeInnerFragment extends Fragment implements AllJobsAdapter.ItemCl
         binding.btnGetStarted.setOnClickListener(v -> {
             binding.designLayout.setVisibility(View.INVISIBLE);
             binding.recylerviewLayout.setVisibility(View.VISIBLE);
-            repository.AllJobApplicationGet();
+            repository.jobGet();
         });
 
         repository.getAllJobsReponseMutableLiveData().observe(getViewLifecycleOwner(), allJobsReponse -> {
-            listOfAllJobs.clear();
-            for (int i = 0; i < allJobsReponse.size(); i++) {
-                listOfAllJobs.add(allJobsReponse.get(i).getJob());
+            Log.e("mudassir", "onViewCreated: " + allJobsReponse);
+            if (allJobsReponse != null) {
+                listOfAllJobs.clear();
+                listOfAllJobs.addAll(allJobsReponse);
+                binding.progressCircular.setVisibility(View.INVISIBLE);
+                initRecyclerView(listOfAllJobs);
             }
-            binding.progressCircular.setVisibility(View.INVISIBLE);
-            initRecyclerView(listOfAllJobs);
         });
+        binding.jobSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                callSearch(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+//              if (searchView.isExpanded() && TextUtils.isEmpty(newText)) {
+                callSearch(newText);
+//              }
+                return true;
+            }
+
+            public void callSearch(String query) {
+                filter(query);
+            }
+
+        });
+
+
     }
 
     @Override
     public void onItemClick(View view, int position) {
-
+        Bundle bundle = new Bundle();
+        bundle.putInt(Appconstants.JOB_ID, position);
+        Navigation.findNavController(view).navigate(R.id.home_inner_to_job_detail, bundle);
     }
-
 
     void initRecyclerView(ArrayList<Job> jobArrayList) {
         binding.allJobRv.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -70,4 +98,20 @@ public class HomeInnerFragment extends Fragment implements AllJobsAdapter.ItemCl
         adapter.setClickListener(this);
         binding.allJobRv.setAdapter(adapter);
     }
+
+    private void filter(String text) {
+        ArrayList<Job> filteredlist = new ArrayList<Job>();
+        for (Job item : listOfAllJobs) {
+            if (item.getTitle().toLowerCase().contains(text.toLowerCase())) {
+                filteredlist.add(item);
+            }
+        }
+        if (filteredlist.isEmpty()) {
+            Toast.makeText(requireContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
+        } else {
+            adapter.filterList(filteredlist);
+        }
+    }
+
+
 }

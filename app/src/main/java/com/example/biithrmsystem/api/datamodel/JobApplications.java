@@ -3,6 +3,16 @@ package com.example.biithrmsystem.api.datamodel;
 import java.util.List;
 
 public class JobApplications {
+    Job job;
+    List<String> shortlists;
+    int jobApplicationID;
+    int jid;
+    int uid;
+    String name;
+    String status;
+    String shortlist;
+    String documentPath;
+
     public Job getJob() {
         return job;
     }
@@ -74,16 +84,6 @@ public class JobApplications {
     public void setDocumentPath(String documentPath) {
         this.documentPath = documentPath;
     }
-
-    Job job;
-    List<String> shortlists;
-    int jobApplicationID;
-    int jid;
-    int uid;
-    String name;
-    String status;
-    String shortlist;
-    String documentPath;
 
 
 }

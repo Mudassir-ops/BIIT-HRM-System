@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
@@ -22,9 +21,7 @@ import com.example.biithrmsystem.commons.SharedPreferences;
 import com.example.biithrmsystem.databinding.FragmentHomeBinding;
 import com.example.biithrmsystem.repositories.Repository;
 
-
 import java.util.List;
-import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -53,6 +50,12 @@ public class HomeFragment extends Fragment {
         binding.drawerLayoutInner.tvProfile.setOnClickListener(v -> {
             Navigation.findNavController(view).navigate(R.id.home_to_complete_profile);
         });
+
+        binding.drawerLayoutInner.tvPostedJob.setOnClickListener(v -> {
+                    Navigation.findNavController(view).navigate(R.id.home_to_allJobApplications);
+                }
+        );
+
         repository.getUser(SharedPreferences.GetLogInUserId());
         repository.getGetUser().observe(getViewLifecycleOwner(), new Observer<List<UserSignInResponse>>() {
             @Override
@@ -76,6 +79,12 @@ public class HomeFragment extends Fragment {
                 //    binding.drawerLayoutInner.tvName.setText("" + userSignInResponses.get(0).fname + " " + userSignInResponses.get(0).lname.toString());
             }
         });
+
+
+        binding.drawerLayoutInner.tvLogOut.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigateUp();
+            SharedPreferences.setLogInUserId(0);
+        });
     }
 
     @Override
@@ -83,5 +92,6 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
 
 }

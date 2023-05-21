@@ -27,6 +27,10 @@
         <action
             android:id="@+id/home_to_complete_profile"
             app:destination="@id/navigation2_complete_profile" />
+
+        <action
+            android:id="@+id/home_to_allJobApplications"
+            app:destination="@id/navigation2_allJobApplications" />
     </fragment>
 
     <fragment
@@ -45,6 +49,10 @@
         <action
             android:id="@+id/login_to_add_job"
             app:destination="@id/navigation_add_job" />
+
+        <action
+            android:id="@+id/login_to_guard"
+            app:destination="@id/navigation_guard" />
     </fragment>
 
 
@@ -64,8 +72,6 @@
         android:name="com.example.biithrmsystem.ui.fragments.addjob.AddJobFragment"
         android:label="AddJob"
         tools:layout="@layout/fragment_add_job" />
-
-
     <fragment
         android:id="@+id/navigation2_complete_profile"
         android:name="com.example.biithrmsystem.ui.fragments.signup.CompleteProfileFragment"
@@ -102,4 +108,17 @@
         android:label="Edit Experience Fragment"
         tools:layout="@layout/fragment_experience_edit" />
 
+
+    <fragment
+        android:id="@+id/navigation2_allJobApplications"
+        android:name="com.example.biithrmsystem.ui.fragments.application_applicant.ApplicantApplicationFragment"
+        android:label="Applciation"
+        tools:layout="@layout/fragment_applicant_application" />
+
+
+    <fragment
+        android:id="@+id/navigation_guard"
+        android:name="com.example.biithrmsystem.ui.fragments.GuardHome.GuardHomeFragment"
+        android:label="Guard"
+        tools:layout="@layout/fragment_guard_home" />
 </navigation>

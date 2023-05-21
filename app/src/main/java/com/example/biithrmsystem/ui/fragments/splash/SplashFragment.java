@@ -1,21 +1,20 @@
 package com.example.biithrmsystem.ui.fragments.splash;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import com.example.biithrmsystem.R;
+import com.example.biithrmsystem.commons.SharedPreferences;
 import com.example.biithrmsystem.databinding.FragmentSplashBinding;
 
 public class SplashFragment extends Fragment {
@@ -34,8 +33,18 @@ public class SplashFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         homeViewModel = new ViewModelProvider(this).get(SplashViewModel.class);
 
+
         final Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(() -> Navigation.findNavController(view).navigate(R.id.spalsh_to_login), 1000);
+        handler.postDelayed(() ->
+        {
+            if (SharedPreferences.GetLogInUserId()==0) {
+                Navigation.findNavController(view).navigate(R.id.spalsh_to_login);
+            } else {
+                Navigation.findNavController(view).navigate(R.id.spalsh_to_home);
+            }
+
+
+        }, 1000);
     }
 
     @Override

@@ -1,22 +1,14 @@
 package com.example.biithrmsystem.ui.activities;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
-
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.Toast;
 
 import com.example.biithrmsystem.R;
 import com.example.biithrmsystem.databinding.ActivityHomeBinding;
-
-import java.util.concurrent.Executor;
 
 
 public class HomeActivity extends AppCompatActivity {

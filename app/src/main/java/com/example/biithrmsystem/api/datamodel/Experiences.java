@@ -4,6 +4,13 @@ public class Experiences {
 
     int expID;
     int uid;
+    String company;
+    String title;
+    String startdate;
+    String currentwork;
+    String enddate;
+    String otherskill;
+    String hasexperienced;
 
     public int getExpID() {
         return expID;
@@ -76,14 +83,6 @@ public class Experiences {
     public void setHasexperienced(String hasexperienced) {
         this.hasexperienced = hasexperienced;
     }
-
-    String company;
-    String title;
-    String startdate;
-    String currentwork;
-    String enddate;
-    String otherskill;
-    String hasexperienced;
 
 
 }

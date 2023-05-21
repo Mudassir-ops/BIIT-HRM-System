@@ -10,7 +10,9 @@ import com.example.biithrmsystem.api.WebService;
 import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
 import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
+import com.example.biithrmsystem.api.datamodel.Job;
 import com.example.biithrmsystem.api.datamodel.PostJobModel;
+import com.example.biithrmsystem.api.datamodel.SignupUserModel;
 import com.example.biithrmsystem.api.datamodel.UserSignInResponse;
 
 import java.util.List;
@@ -20,15 +22,26 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Repository {
-    public Repository() {
-    }
-
     public MutableLiveData<UserSignInResponse> userSignInResponseLiveData = new MutableLiveData<>();
     public MutableLiveData<List<UserSignInResponse>> getUser = new MutableLiveData<List<UserSignInResponse>>();
+    public MutableLiveData<List<AllJobsReponse>> allJobResponse = new MutableLiveData<List<AllJobsReponse>>();
     public MutableLiveData<String> postJobModelMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<String> postEducationModelMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<String> postExperienceModelMutableLiveData = new MutableLiveData<>();
-    public MutableLiveData<List<AllJobsReponse>> allJobsReponseMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<String> signupLiveData = new MutableLiveData<>();
+    public MutableLiveData<String> updateUser = new MutableLiveData<>();
+    public MutableLiveData<String> appyJob = new MutableLiveData<>();
+    public MutableLiveData<List<Job>> allJobsReponseMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<AllJobsReponse>> allApplicantJob = new MutableLiveData<>();
+    public MutableLiveData<List<Job>> jobDetailLiveData = new MutableLiveData<>();
+
+    public Repository() {
+    }
+
+
+    public MutableLiveData<String> getSignupLiveData() {
+        return signupLiveData;
+    }
 
     public MutableLiveData<String> getPostJobModelMutableLiveData() {
         return postJobModelMutableLiveData;
@@ -42,6 +55,10 @@ public class Repository {
         return userSignInResponseLiveData;
     }
 
+    public MutableLiveData<String> getUpdateUser() {
+        return updateUser;
+    }
+
     public MutableLiveData<String> getPostEducationModelMutableLiveData() {
         return postEducationModelMutableLiveData;
     }
@@ -50,7 +67,7 @@ public class Repository {
         return postExperienceModelMutableLiveData;
     }
 
-    public MutableLiveData<List<AllJobsReponse>> getAllJobsReponseMutableLiveData() {
+    public MutableLiveData<List<Job>> getAllJobsReponseMutableLiveData() {
         return allJobsReponseMutableLiveData;
     }
 
@@ -145,10 +162,8 @@ public class Repository {
             @Override
             public void onResponse(@NonNull Call<List<AllJobsReponse>> call, @NonNull Response<List<AllJobsReponse>> response) {
                 Log.e("sadsad", "onResponse: asdsa" + response.body());
-                allJobsReponseMutableLiveData.postValue(response.body());
-
+                allApplicantJob.postValue(response.body());
             }
-
             @Override
             public void onFailure(@NonNull Call<List<AllJobsReponse>> call, @NonNull Throwable t) {
                 Log.e("sadsad", "onResponse: asdsa" + t);
@@ -156,5 +171,90 @@ public class Repository {
             }
         });
     }
+
+
+    public void singUp(SignupUserModel signupUserModel) {
+        WebService.getWebApi().signup(signupUserModel).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                Log.e("sadsad", "onResponse: asdsa" + response.body());
+                signupLiveData.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponse: asdsa" + t);
+
+//                userSignInResponseLiveData.postValue(null);
+            }
+        });
+    }
+
+
+    public void jobGet() {
+        WebService.getWebApi().jobGet().enqueue(new Callback<List<Job>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Job>> call, @NonNull Response<List<Job>> response) {
+                Log.e("sadsad", "onResponse: asdsa" + response.body());
+                allJobsReponseMutableLiveData.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Job>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponse: asdsa" + t);
+
+            }
+        });
+    }
+
+    public void jobDetail(int jid) {
+        WebService.getWebApi().JobDetailGet(jid).enqueue(new Callback<List<Job>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Job>> call, @NonNull Response<List<Job>> response) {
+                Log.e("sadsad", "onResponse: asdsa" + response.body());
+                jobDetailLiveData.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Job>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponse: asdsa" + t);
+
+            }
+        });
+    }
+
+    public void updateUser(int uId, String fname, String lname, String mobile, String cnic, String gender, String dob, String email, String password, String address, String image) {
+        WebService.getWebApi().updateUser(uId, fname, lname, mobile, cnic, gender, dob, email, password, address, image).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                Log.e("sadsad", "onResponse: asdsa" + response.body());
+                updateUser.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponse: asdsa" + t);
+
+            }
+        });
+    }
+
+
+    public void JobFileApplicationPost(int jId, int Uid, String documentPath) {
+        WebService.getWebApi().JobFileApplicationPost(jId, Uid, documentPath).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                Log.e("sadsad", "onResponse: asdsa" + response.body());
+                appyJob.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponse: asdsa" + t);
+
+            }
+        });
+    }
+
 
 }

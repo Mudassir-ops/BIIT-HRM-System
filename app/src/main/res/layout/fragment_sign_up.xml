@@ -136,6 +136,7 @@
         android:drawableStart="@drawable/baseline_lock_24"
         android:drawablePadding="@dimen/_5sdp"
         android:hint="@string/password"
+        android:inputType="textPassword"
         android:paddingHorizontal="@dimen/_5sdp"
         android:textAlignment="textStart"
         android:textColor="@color/black"

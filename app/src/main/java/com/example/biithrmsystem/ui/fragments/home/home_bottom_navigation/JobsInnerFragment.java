@@ -1,17 +1,14 @@
 package com.example.biithrmsystem.ui.fragments.home.home_bottom_navigation;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.example.biithrmsystem.R;
-import com.example.biithrmsystem.databinding.FragmentHomeBinding;
 import com.example.biithrmsystem.databinding.FragmentJobsInnerBinding;
 
 public class JobsInnerFragment extends Fragment {

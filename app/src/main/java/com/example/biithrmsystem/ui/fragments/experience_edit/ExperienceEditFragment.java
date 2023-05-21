@@ -2,22 +2,18 @@ package com.example.biithrmsystem.ui.fragments.experience_edit;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.example.biithrmsystem.R;
-import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
 import com.example.biithrmsystem.commons.SharedPreferences;
-import com.example.biithrmsystem.databinding.FragmentEducationEditBinding;
 import com.example.biithrmsystem.databinding.FragmentExperienceEditBinding;
 import com.example.biithrmsystem.repositories.Repository;
 
@@ -29,12 +25,10 @@ import java.util.Objects;
 
 public class ExperienceEditFragment extends Fragment {
 
-    private FragmentExperienceEditBinding binding;
-    private Repository repository;
-
     final Calendar myCalendar1 = Calendar.getInstance();
     final Calendar myCalendar2 = Calendar.getInstance();
-
+    private FragmentExperienceEditBinding binding;
+    private Repository repository;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

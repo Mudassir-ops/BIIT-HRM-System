@@ -12,17 +12,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.biithrmsystem.R;
 import com.example.biithrmsystem.api.datamodel.Job;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AllJobsAdapter extends RecyclerView.Adapter<AllJobsAdapter.ViewHolder> {
 
-    private final List<Job> mData;
+    private List<Job> mData;
     private final LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     public AllJobsAdapter(Context context, List<Job> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+    }
+
+    // method for filtering our recyclerview items.
+    public void filterList(ArrayList<Job> filterlist) {
+        mData = filterlist;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -34,21 +41,32 @@ public class AllJobsAdapter extends RecyclerView.Adapter<AllJobsAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Job job = mData.get(position);
-        if (job.getTitle() != null) {
-            holder.title.setText(job.getTitle());
+        if (mData.get(position).getTitle() != null) {
+            holder.title.setText(mData.get(position).getTitle());
         }
-        if (job.getSalary() != null) {
-            holder.salary.setText(job.getSalary());
+        if (mData.get(position).getSalary() != null) {
+            holder.salary.setText(mData.get(position).getSalary());
         }
-        if (job.getLocation() != null) {
-            holder.location.setText(job.getLocation());
+        if (mData.get(position).getLocation() != null) {
+            holder.location.setText(mData.get(position).getLocation());
         }
     }
 
     @Override
     public int getItemCount() {
         return mData.size();
+    }
+
+    String getItem(int id) {
+        return mData.get(id).getTitle();
+    }
+
+    public void setClickListener(ItemClickListener itemClickListener) {
+        this.mClickListener = itemClickListener;
+    }
+
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -67,20 +85,8 @@ public class AllJobsAdapter extends RecyclerView.Adapter<AllJobsAdapter.ViewHold
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            if (mClickListener != null)
+                mClickListener.onItemClick(view, mData.get(getAdapterPosition()).getJid());
         }
-    }
-
-
-    String getItem(int id) {
-        return mData.get(id).getTitle();
-    }
-
-    public void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
     }
 }

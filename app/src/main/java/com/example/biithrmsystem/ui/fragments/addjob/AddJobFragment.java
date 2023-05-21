@@ -2,6 +2,11 @@ package com.example.biithrmsystem.ui.fragments.addjob;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,35 +14,24 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.DatePicker;
-import android.widget.Toast;
-
 import com.example.biithrmsystem.R;
 import com.example.biithrmsystem.api.datamodel.PostJobModel;
 import com.example.biithrmsystem.databinding.FragmentAddJobBinding;
-import com.example.biithrmsystem.databinding.FragmentSignUpBinding;
 import com.example.biithrmsystem.repositories.Repository;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
 
 public class AddJobFragment extends Fragment {
     final Calendar myCalendar = Calendar.getInstance();
+    String[] jobArray = new String[5];
+    String[] qualificationArray = new String[5];
     private FragmentAddJobBinding binding;
     private Repository repository;
     private String jobTitle = "";
     private String jobQualification = "";
-    String[] jobArray = new String[5];
-    String[] qualificationArray = new String[5];
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -79,7 +73,6 @@ public class AddJobFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-
             }
 
         });

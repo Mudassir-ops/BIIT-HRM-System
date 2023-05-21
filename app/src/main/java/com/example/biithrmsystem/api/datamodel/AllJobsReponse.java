@@ -9,8 +9,8 @@ public class AllJobsReponse {
     int JobApplicationID;
     int Jid;
     int Uid;
-    String Name;
-    String Status;
+    String name;
+    String status;
     String Shortlist;
     String DocumentPath;
 
@@ -63,19 +63,19 @@ public class AllJobsReponse {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        name = name;
     }
 
     public String getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(String status) {
-        Status = status;
+        status = status;
     }
 
     public String getShortlist() {

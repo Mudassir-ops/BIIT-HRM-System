@@ -12,6 +12,10 @@
         android:label="HomeInner"
         tools:layout="@layout/fragment_home_inner">
 
+        <action
+            android:id="@+id/home_inner_to_job_detail"
+            app:destination="@+id/navigation2_jobDetail" />
+
     </fragment>
 
 
@@ -27,5 +31,11 @@
         android:label="ProfileInner"
         tools:layout="@layout/fragment_profile_inner" />
 
+
+    <fragment
+        android:id="@+id/navigation2_jobDetail"
+        android:name="com.example.biithrmsystem.ui.fragments.JobDetailFragment.JobDetailFragment"
+        android:label="Job Detail"
+        tools:layout="@layout/fragment_job_detail" />
 
 </navigation>

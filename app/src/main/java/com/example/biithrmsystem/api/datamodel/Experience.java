@@ -44,35 +44,35 @@ public class Experience {
         this.hasaddededucation = hasaddededucation;
     }
 
-    public void setCurrentwork(String currentwork) {
-        this.currentwork = currentwork;
-    }
-
-    public void setOtherskill(String otherskill) {
-        this.otherskill = otherskill;
-    }
-
     public String getCurrentwork() {
         return currentwork;
+    }
+
+    public void setCurrentwork(String currentwork) {
+        this.currentwork = currentwork;
     }
 
     public String getOtherskill() {
         return otherskill;
     }
 
-    public void setCompany(String company) {
-        Company = company;
-    }
-
-    public void setTitle(String title) {
-        Title = title;
+    public void setOtherskill(String otherskill) {
+        this.otherskill = otherskill;
     }
 
     public String getCompany() {
         return Company;
     }
 
+    public void setCompany(String company) {
+        Company = company;
+    }
+
     public String getTitle() {
         return Title;
+    }
+
+    public void setTitle(String title) {
+        Title = title;
     }
 }
