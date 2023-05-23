@@ -9,5 +9,6 @@
     <color name="app_icon_color">#0C70BF</color>
     <color name="job_bg_color">#807FB1D8</color>
     <color name="yellowish_color">#F1BE25</color>
-    <color name="redish_color">#C54A4A</color>
+    <color name="redish_color">#F15959</color>
+    <color name="green_color">#6CCA32</color>
 </resources>

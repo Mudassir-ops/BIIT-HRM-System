@@ -2,6 +2,7 @@ package com.example.biithrmsystem.ui.fragments.edit_profile;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
 import com.example.biithrmsystem.R;
@@ -30,7 +32,7 @@ import java.util.Objects;
 
 public class EditPorfileFragment extends Fragment {
     final Calendar myCalendar = Calendar.getInstance();
-    String imagePath = "";
+    static String imagePath = "";
     Repository repository;
     String[] genderArray = new String[5];
     private FragmentEditPorfileBinding binding;
@@ -83,6 +85,11 @@ public class EditPorfileFragment extends Fragment {
         binding.layoutAddress.etEmail.setHint("Address");
         binding.layoutAddress.name.setText("Address");
 
+
+
+        binding.layoutCnic.etEmail.setInputType(InputType.TYPE_CLASS_NUMBER);
+        binding.layoutContactNo.etEmail.setInputType(InputType.TYPE_CLASS_NUMBER);
+
         binding.profilePick.setOnClickListener(v -> {
             mGetContent.launch("image/*");
         });
@@ -110,6 +117,9 @@ public class EditPorfileFragment extends Fragment {
             signupUserModel.setGender(Objects.requireNonNull(mGender));
             signupUserModel.setAddress(Objects.requireNonNull(binding.layoutAddress.etEmail.getText()).toString());
             signupUserModel.setImage(imagePath);
+
+            Log.e("asdsadsd", "onViewCreated: "+imagePath);
+            Log.e("asdsadsd", "onViewCreated: "+signupUserModel.getImage());
             repository.updateUser(
                     SharedPreferences.GetLogInUserId(),
                     signupUserModel.getFname(),
@@ -121,16 +131,14 @@ public class EditPorfileFragment extends Fragment {
                     SharedPreferences.GetEmailId(),
                     SharedPreferences.GetPassword(),
                     signupUserModel.getAddress(),
-                    signupUserModel.getImage()
+                    signupUserModel.getImage(),
+                    "applicant"
 
 
             );
         });
-        repository.getUpdateUser().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                //  Navigation.findNavController(view).navigateUp();
-            }
+        repository.getUpdateUser().observe(getViewLifecycleOwner(), s -> {
+            Navigation.findNavController(view).navigateUp();
         });
     }
 

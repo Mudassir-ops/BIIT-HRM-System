@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.biithrmsystem.api.WebService;
 import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
+import com.example.biithrmsystem.api.datamodel.AttendenceModel;
 import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
 import com.example.biithrmsystem.api.datamodel.Job;
@@ -31,6 +32,7 @@ public class Repository {
     public MutableLiveData<String> signupLiveData = new MutableLiveData<>();
     public MutableLiveData<String> updateUser = new MutableLiveData<>();
     public MutableLiveData<String> appyJob = new MutableLiveData<>();
+    public MutableLiveData<String> attendeceModel = new MutableLiveData<>();
     public MutableLiveData<List<Job>> allJobsReponseMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<List<AllJobsReponse>> allApplicantJob = new MutableLiveData<>();
     public MutableLiveData<List<Job>> jobDetailLiveData = new MutableLiveData<>();
@@ -164,6 +166,7 @@ public class Repository {
                 Log.e("sadsad", "onResponse: asdsa" + response.body());
                 allApplicantJob.postValue(response.body());
             }
+
             @Override
             public void onFailure(@NonNull Call<List<AllJobsReponse>> call, @NonNull Throwable t) {
                 Log.e("sadsad", "onResponse: asdsa" + t);
@@ -223,8 +226,8 @@ public class Repository {
         });
     }
 
-    public void updateUser(int uId, String fname, String lname, String mobile, String cnic, String gender, String dob, String email, String password, String address, String image) {
-        WebService.getWebApi().updateUser(uId, fname, lname, mobile, cnic, gender, dob, email, password, address, image).enqueue(new Callback<String>() {
+    public void updateUser(int uId, String fname, String lname, String mobile, String cnic, String gender, String dob, String email, String password, String address, String image, String role) {
+        WebService.getWebApi().updateUser(uId, fname, lname, mobile, cnic, gender, dob, email, password, address, image, role).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 Log.e("sadsad", "onResponse: asdsa" + response.body());
@@ -248,6 +251,21 @@ public class Repository {
                 appyJob.postValue(response.body());
             }
 
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponse: asdsa" + t);
+
+            }
+        });
+    }
+
+    public void AttendancePost(AttendenceModel attendenceModel) {
+        WebService.getWebApi().AttendancePost(attendenceModel).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                Log.e("sadsad", "onResponse: asdsa" + response.body());
+                attendeceModel.postValue(response.body());
+            }
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 Log.e("sadsad", "onResponse: asdsa" + t);

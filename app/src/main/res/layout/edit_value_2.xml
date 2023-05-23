@@ -9,14 +9,15 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_email"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_50sdp"
+        android:layout_height="@dimen/_60sdp"
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:layout_marginVertical="@dimen/_20sdp"
         android:background="@drawable/bg_login_edit_textt"
         android:hint="@string/enter_your_email_text"
-        android:paddingHorizontal="@dimen/_10sdp"
-        android:paddingStart="@dimen/_20sdp"
+        android:paddingStart="@dimen/_40sdp"
         android:textAlignment="textStart"
+        android:focusable="false"
+        android:inputType="none"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="@dimen/_14ssp"
@@ -31,18 +32,23 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_30sdp"
         android:background="@color/white"
-
         android:paddingHorizontal="@dimen/_2sdp"
-        android:text="@string/email"
-        android:textColor="@color/black"
+        android:text="Check-in Time"
+        android:textColor="@color/app_icon_color"
         android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/et_email"
         app:layout_constraintStart_toStartOf="@id/et_email"
         app:layout_constraintTop_toTopOf="@+id/et_email"
         app:layout_constraintWidth_percent="0.15" />
 
-
-
-
+    <ImageView
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:src="@drawable/baseline_watch_later_24"
+        app:layout_constraintBottom_toBottomOf="@+id/et_email"
+        app:layout_constraintStart_toStartOf="@+id/et_email"
+        app:layout_constraintTop_toTopOf="@+id/et_email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

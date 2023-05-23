@@ -1,7 +1,7 @@
 package com.example.biithrmsystem.api;
 
-import com.example.biithrmsystem.api.datamodel.AllJobApplicant;
 import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
+import com.example.biithrmsystem.api.datamodel.AttendenceModel;
 import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
 import com.example.biithrmsystem.api.datamodel.Job;
@@ -46,7 +46,7 @@ public interface WebApi {
 
     @FormUrlEncoded
     @PUT("User/UpdateUser")
-    Call<String> updateUser(@Field("Uid") int Uid, @Field("fname") String fname, @Field("lname") String lname, @Field("mobile") String mobile, @Field("cnic") String cnic, @Field("gender") String gender, @Field("dob") String dob, @Field("email") String email, @Field("password") String password, @Field("address") String address, @Field("image") String image);
+    Call<String> updateUser(@Field("Uid") int Uid, @Field("fname") String fname, @Field("lname") String lname, @Field("mobile") String mobile, @Field("cnic") String cnic, @Field("gender") String gender, @Field("dob") String dob, @Field("email") String email, @Field("password") String password, @Field("address") String address, @Field("image") String image, @Field("role") String role);
 
     @GET("Job/JobGet")
     Call<List<Job>> jobGet();
@@ -61,6 +61,8 @@ public interface WebApi {
     @POST("JobApplication/JobFileApplicationPost")
     Call<String> JobFileApplicationPost(@Field("Jid") int Jid, @Field("Uid") int Uid, @Field("DocumentPath") String DocumentPath);
 
+    @POST("Attendance/AttendancePost")
+    Call<String> AttendancePost(@Body AttendenceModel attendenceModel);
 
 }
 

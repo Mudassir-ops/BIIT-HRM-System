@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.attendence_checkin.AttendenceCheckInFragment">
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profile_pick"
+        android:layout_width="@dimen/_110sdp"
+        android:layout_height="@dimen/_110sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/round_image"
+        android:elevation="@dimen/_5sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+        app:srcCompat="@drawable/ic_baseline_add_circle_24" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="Name:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/tv_name_value"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_pick" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_name_value"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:text="Mahzaib"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_number"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Number:"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_number_value"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="033546641"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_number"
+        app:layout_constraintStart_toStartOf="@+id/tv_name_value"
+        app:layout_constraintTop_toTopOf="@+id/tv_number" />
+
+
+    <View
+        android:id="@+id/view_date"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/layout_cehck_in"
+        app:layout_constraintEnd_toEndOf="@+id/layout_cehck_in"
+        app:layout_constraintStart_toStartOf="@id/layout_cehck_in"
+        app:layout_constraintTop_toTopOf="@id/layout_cehck_in" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_cehck_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/layout_check_out"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_number"
+        app:layout_constraintVertical_bias=".3"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <include
+            android:id="@+id/layout_cehck_in_inner"
+            layout="@layout/edit_value_2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_check_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_cehck_in">
+
+        <include
+            android:id="@+id/layout_cehck_out_inner"
+            layout="@layout/edit_value_2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:background="@drawable/bg_home_btn"
+        android:backgroundTint="@color/app_icon_color"
+        android:text="Check In"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/layout_check_out"
+        app:layout_constraintStart_toStartOf="@+id/layout_check_out"
+        app:layout_constraintTop_toBottomOf="@+id/layout_check_out" />
+</androidx.constraintlayout.widget.ConstraintLayout>

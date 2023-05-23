@@ -120,5 +120,17 @@
         android:id="@+id/navigation_guard"
         android:name="com.example.biithrmsystem.ui.fragments.GuardHome.GuardHomeFragment"
         android:label="Guard"
-        tools:layout="@layout/fragment_guard_home" />
+        tools:layout="@layout/fragment_guard_home">
+
+        <action
+            android:id="@+id/guard_home_to_checkin"
+            app:destination="@+id/navigation_atttendence_check_in" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_atttendence_check_in"
+        android:name="com.example.biithrmsystem.ui.fragments.attendence_checkin.AttendenceCheckInFragment"
+        android:label="Attendence Check IN"
+        tools:layout="@layout/fragment_attendence_check_in" />
 </navigation>
