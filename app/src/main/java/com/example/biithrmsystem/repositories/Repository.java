@@ -11,7 +11,7 @@ import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
 import com.example.biithrmsystem.api.datamodel.AttendenceModel;
 import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
-import com.example.biithrmsystem.api.datamodel.Job;
+import com.example.biithrmsystem.api.datamodel.JobResponse;
 import com.example.biithrmsystem.api.datamodel.PostJobModel;
 import com.example.biithrmsystem.api.datamodel.SignupUserModel;
 import com.example.biithrmsystem.api.datamodel.UserSignInResponse;
@@ -33,9 +33,9 @@ public class Repository {
     public MutableLiveData<String> updateUser = new MutableLiveData<>();
     public MutableLiveData<String> appyJob = new MutableLiveData<>();
     public MutableLiveData<String> attendeceModel = new MutableLiveData<>();
-    public MutableLiveData<List<Job>> allJobsReponseMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<JobResponse>> allJobsReponseMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<List<AllJobsReponse>> allApplicantJob = new MutableLiveData<>();
-    public MutableLiveData<List<Job>> jobDetailLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<JobResponse>> jobDetailLiveData = new MutableLiveData<>();
 
     public Repository() {
     }
@@ -69,7 +69,7 @@ public class Repository {
         return postExperienceModelMutableLiveData;
     }
 
-    public MutableLiveData<List<Job>> getAllJobsReponseMutableLiveData() {
+    public MutableLiveData<List<JobResponse>> getAllJobsReponseMutableLiveData() {
         return allJobsReponseMutableLiveData;
     }
 
@@ -124,14 +124,12 @@ public class Repository {
         });
     }
 
-
     public void postEducation(Education education) {
         WebService.getWebApi().postEducation(education).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 Log.e("sadsad", "onResponse: asdsa" + response);
                 postEducationModelMutableLiveData.postValue(response.message());
-
             }
 
             @Override
@@ -195,15 +193,15 @@ public class Repository {
 
 
     public void jobGet() {
-        WebService.getWebApi().jobGet().enqueue(new Callback<List<Job>>() {
+        WebService.getWebApi().jobGet().enqueue(new Callback<List<JobResponse>>() {
             @Override
-            public void onResponse(@NonNull Call<List<Job>> call, @NonNull Response<List<Job>> response) {
+            public void onResponse(@NonNull Call<List<JobResponse>> call, @NonNull Response<List<JobResponse>> response) {
                 Log.e("sadsad", "onResponse: asdsa" + response.body());
                 allJobsReponseMutableLiveData.postValue(response.body());
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<Job>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<JobResponse>> call, @NonNull Throwable t) {
                 Log.e("sadsad", "onResponse: asdsa" + t);
 
             }
@@ -211,15 +209,15 @@ public class Repository {
     }
 
     public void jobDetail(int jid) {
-        WebService.getWebApi().JobDetailGet(jid).enqueue(new Callback<List<Job>>() {
+        WebService.getWebApi().JobDetailGet(jid).enqueue(new Callback<List<JobResponse>>() {
             @Override
-            public void onResponse(@NonNull Call<List<Job>> call, @NonNull Response<List<Job>> response) {
+            public void onResponse(@NonNull Call<List<JobResponse>> call, @NonNull Response<List<JobResponse>> response) {
                 Log.e("sadsad", "onResponse: asdsa" + response.body());
                 jobDetailLiveData.postValue(response.body());
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<Job>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<JobResponse>> call, @NonNull Throwable t) {
                 Log.e("sadsad", "onResponse: asdsa" + t);
 
             }

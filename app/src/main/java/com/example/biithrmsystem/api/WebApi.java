@@ -4,7 +4,7 @@ import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
 import com.example.biithrmsystem.api.datamodel.AttendenceModel;
 import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
-import com.example.biithrmsystem.api.datamodel.Job;
+import com.example.biithrmsystem.api.datamodel.JobResponse;
 import com.example.biithrmsystem.api.datamodel.PostJobModel;
 import com.example.biithrmsystem.api.datamodel.SignupUserModel;
 import com.example.biithrmsystem.api.datamodel.UserSignInResponse;
@@ -49,10 +49,10 @@ public interface WebApi {
     Call<String> updateUser(@Field("Uid") int Uid, @Field("fname") String fname, @Field("lname") String lname, @Field("mobile") String mobile, @Field("cnic") String cnic, @Field("gender") String gender, @Field("dob") String dob, @Field("email") String email, @Field("password") String password, @Field("address") String address, @Field("image") String image, @Field("role") String role);
 
     @GET("Job/JobGet")
-    Call<List<Job>> jobGet();
+    Call<List<JobResponse>> jobGet();
 
     @GET("Job/JobDetailGet")
-    Call<List<Job>> JobDetailGet(@Query("jid") int jid);
+    Call<List<JobResponse>> JobDetailGet(@Query("jid") int jid);
 
 //    @GET("JobApplication/AllJobApplicationGet")
 //    Call<List<AllJobApplicant>> AllJobApplicationGet();

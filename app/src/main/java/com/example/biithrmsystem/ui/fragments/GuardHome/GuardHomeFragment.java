@@ -46,7 +46,15 @@ public class GuardHomeFragment extends Fragment implements GuardHomeAdapter.Item
         super.onViewCreated(view1, savedInstanceState);
 
         binding.headerLayout.tvHeader.setText("Welcome to Guard Section");
-        binding.headerLayout.ivMenu.setVisibility(View.INVISIBLE);
+        binding.headerLayout.ivMenu.setOnClickListener(v -> {
+
+            binding.drawerLayoutInner.tvPostedJob.setOnClickListener(v1 -> {
+
+            });
+
+        });
+
+
         binding.jobSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

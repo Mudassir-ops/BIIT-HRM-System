@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.biithrmsystem.api.datamodel.AttendenceModel;
-import com.example.biithrmsystem.api.datamodel.Job;
+import com.example.biithrmsystem.api.datamodel.JobResponse;
 import com.example.biithrmsystem.commons.Function;
 import com.example.biithrmsystem.commons.SharedPreferences;
 import com.example.biithrmsystem.databinding.FragmentAttendenceCheckInBinding;
@@ -30,7 +30,7 @@ public class AttendenceCheckInFragment extends Fragment {
 
     private FragmentAttendenceCheckInBinding binding;
     private Repository repository;
-    private ArrayList<Job> listOfAllJobs;
+    private ArrayList<JobResponse> listOfAllJobResponses;
 
     final Calendar myCalendar = Calendar.getInstance();
     private int srcImage;
@@ -197,9 +197,46 @@ public class AttendenceCheckInFragment extends Fragment {
             }
 
         });
-
         repository.attendeceModel.observe(getViewLifecycleOwner(), s -> {
             Function.showToast("" + s, requireContext());
+            switch (userPosition) {
+                case 0:
+                    SharedPreferences.setCheckedInUser0("");
+                    break;
+                case 1:
+                    SharedPreferences.setCheckedInUser1("");
+                    break;
+                case 2:
+                    SharedPreferences.setCheckedInUser2("");
+                    break;
+                case 3:
+                    SharedPreferences.setCheckedInUser3("");
+                    break;
+                case 4:
+                    SharedPreferences.setCheckedInUser4("");
+                    break;
+                case 5:
+                    SharedPreferences.setCheckedInUser5("");
+                    break;
+                case 6:
+                    SharedPreferences.setCheckedInUser6("");
+                    break;
+                case 7:
+                    SharedPreferences.setCheckedInUser7("");
+                    break;
+                case 8:
+                    SharedPreferences.setCheckedInUser8("");
+                    break;
+                case 9:
+                    SharedPreferences.setCheckedInUser9("");
+                    break;
+                case 10:
+                    SharedPreferences.setCheckedInUser10("");
+                    break;
+                default:
+                    break;
+            }
+
             Navigation.findNavController(view).navigateUp();
         });
 

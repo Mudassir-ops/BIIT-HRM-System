@@ -3,7 +3,7 @@ package com.example.biithrmsystem.api.datamodel;
 import java.util.List;
 
 public class AllJobsReponse {
-    Job Job;
+    JobResponse JobResponse;
     List<String> Shortlists;
     User User;
     int JobApplicationID;
@@ -14,12 +14,12 @@ public class AllJobsReponse {
     String Shortlist;
     String DocumentPath;
 
-    public com.example.biithrmsystem.api.datamodel.Job getJob() {
-        return Job;
+    public JobResponse getJob() {
+        return JobResponse;
     }
 
-    public void setJob(com.example.biithrmsystem.api.datamodel.Job job) {
-        Job = job;
+    public void setJob(JobResponse jobResponse) {
+        JobResponse = jobResponse;
     }
 
     public List<String> getShortlists() {

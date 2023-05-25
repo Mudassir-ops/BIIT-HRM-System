@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.biithrmsystem.R;
 import com.example.biithrmsystem.adapter.AllJobsAdapter;
-import com.example.biithrmsystem.api.datamodel.Job;
+import com.example.biithrmsystem.api.datamodel.JobResponse;
 import com.example.biithrmsystem.commons.Appconstants;
 import com.example.biithrmsystem.databinding.FragmentHomeInnerBinding;
 import com.example.biithrmsystem.repositories.Repository;
@@ -28,13 +28,13 @@ public class HomeInnerFragment extends Fragment implements AllJobsAdapter.ItemCl
     AllJobsAdapter adapter;
     private FragmentHomeInnerBinding binding;
     private Repository repository;
-    private ArrayList<Job> listOfAllJobs;
+    private ArrayList<JobResponse> listOfAllJobResponses;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         repository = new Repository();
-        listOfAllJobs = new ArrayList<>();
+        listOfAllJobResponses = new ArrayList<>();
     }
 
     @Override
@@ -55,11 +55,12 @@ public class HomeInnerFragment extends Fragment implements AllJobsAdapter.ItemCl
         repository.getAllJobsReponseMutableLiveData().observe(getViewLifecycleOwner(), allJobsReponse -> {
             Log.e("mudassir", "onViewCreated: " + allJobsReponse);
             if (allJobsReponse != null) {
-                listOfAllJobs.clear();
-                listOfAllJobs.addAll(allJobsReponse);
+                listOfAllJobResponses.clear();
+                listOfAllJobResponses.addAll(allJobsReponse);
                 binding.progressCircular.setVisibility(View.INVISIBLE);
-                initRecyclerView(listOfAllJobs);
+                initRecyclerView(listOfAllJobResponses);
             }
+
         });
         binding.jobSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -81,8 +82,6 @@ public class HomeInnerFragment extends Fragment implements AllJobsAdapter.ItemCl
             }
 
         });
-
-
     }
 
     @Override
@@ -92,16 +91,16 @@ public class HomeInnerFragment extends Fragment implements AllJobsAdapter.ItemCl
         Navigation.findNavController(view).navigate(R.id.home_inner_to_job_detail, bundle);
     }
 
-    void initRecyclerView(ArrayList<Job> jobArrayList) {
+    void initRecyclerView(ArrayList<JobResponse> jobResponseArrayList) {
         binding.allJobRv.setLayoutManager(new LinearLayoutManager(requireContext()));
-        adapter = new AllJobsAdapter(requireContext(), jobArrayList);
+        adapter = new AllJobsAdapter(requireContext(), jobResponseArrayList);
         adapter.setClickListener(this);
         binding.allJobRv.setAdapter(adapter);
     }
 
     private void filter(String text) {
-        ArrayList<Job> filteredlist = new ArrayList<Job>();
-        for (Job item : listOfAllJobs) {
+        ArrayList<JobResponse> filteredlist = new ArrayList<JobResponse>();
+        for (JobResponse item : listOfAllJobResponses) {
             if (item.getTitle().toLowerCase().contains(text.toLowerCase())) {
                 filteredlist.add(item);
             }

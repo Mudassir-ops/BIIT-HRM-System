@@ -2,10 +2,14 @@ package com.example.biithrmsystem.ui.fragments.login;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 
 import androidx.annotation.NonNull;
@@ -80,9 +84,14 @@ public class LoginFragment extends Fragment {
             binding.drawerLayout.closeDrawers();
         });
 
+        Animation  animation= AnimationUtils.loadAnimation(requireContext(),R.anim.slide_out_top);
+        binding.bottomSheet.setVisibility(View.VISIBLE);
+        binding.bottomSheet.setAnimation(animation);
 
-        binding.bottomLayout.setVisibility(View.INVISIBLE);
-        slideUp(binding.bottomLayout);
+
+
+
+
 
         binding.drawerLayoutInner.tvSetting.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +129,7 @@ public class LoginFragment extends Fragment {
                 0,                 // toXDelta
                 view.getHeight(),  // fromYDelta
                 0);                // toYDelta
-        animate.setDuration(500);
+        animate.setDuration(5000);
         animate.setFillAfter(true);
         view.startAnimation(animate);
     }

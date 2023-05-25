@@ -10,24 +10,24 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.biithrmsystem.R;
-import com.example.biithrmsystem.api.datamodel.Job;
+import com.example.biithrmsystem.api.datamodel.JobResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AllJobsAdapter extends RecyclerView.Adapter<AllJobsAdapter.ViewHolder> {
 
-    private List<Job> mData;
+    private List<JobResponse> mData;
     private final LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    public AllJobsAdapter(Context context, List<Job> data) {
+    public AllJobsAdapter(Context context, List<JobResponse> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
 
     // method for filtering our recyclerview items.
-    public void filterList(ArrayList<Job> filterlist) {
+    public void filterList(ArrayList<JobResponse> filterlist) {
         mData = filterlist;
         notifyDataSetChanged();
     }
