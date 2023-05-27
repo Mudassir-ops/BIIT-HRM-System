@@ -21,7 +21,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.biithrmsystem.R;
-import com.example.biithrmsystem.api.datamodel.ApplyJobModel;
 import com.example.biithrmsystem.commons.Function;
 import com.example.biithrmsystem.commons.SharedPreferences;
 import com.example.biithrmsystem.databinding.FragmentJobDetailBinding;
@@ -63,11 +62,11 @@ public class JobDetailFragment extends Fragment {
 
         repository.jobDetailLiveData.observe(getViewLifecycleOwner(), jobs -> {
             Log.e("JObs", "onViewCreated: " + jobs.toString());
-            initValue(binding.tvNameValue, jobs.get(0).getTitle());
-            initValue(binding.tvNumberValue, jobs.get(0).getSalary());
-            initValue(binding.tvCnicValue, jobs.get(0).getLocation());
-            initValue(binding.tvDateOfBirthValue, jobs.get(0).getLastDateOfApply());
-            initValue(binding.tvGenderValue, jobs.get(0).getDescription());
+            initValue(binding.tvNameValue, jobs.get(0).title);
+            initValue(binding.tvNumberValue, jobs.get(0).salary);
+            initValue(binding.tvCnicValue, jobs.get(0).location);
+            initValue(binding.tvDateOfBirthValue, jobs.get(0).lastDateOfApply);
+            initValue(binding.tvGenderValue, jobs.get(0).description);
         });
 
         binding.btnEdit.setOnClickListener(v -> {

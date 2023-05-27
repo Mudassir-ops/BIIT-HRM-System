@@ -1,22 +1,22 @@
-package com.example.biithrmsystem.api.datamodel; 
-import com.fasterxml.jackson.annotation.JsonProperty;
+package com.example.biithrmsystem.api.datamodel;
+
+import com.google.gson.annotations.SerializedName;
 
 
-
-public class JobApplication{
-    @JsonProperty("User") 
+public class JobApplication {
+    @SerializedName("User")
     public User user;
-    @JsonProperty("JobApplicationID") 
+    @SerializedName("JobApplicationID")
     public int jobApplicationID;
-    @JsonProperty("Jid") 
+    @SerializedName("Jid")
     public int jid;
-    @JsonProperty("Uid") 
+    @SerializedName("Uid")
     public int uid;
     public String name;
     public String status;
     public Object shortlist;
-    @JsonProperty("DocumentPath") 
+    @SerializedName("DocumentPath")
     public String documentPath;
-    @JsonProperty("Job") 
+    @SerializedName("Job")
     public Job job;
 }

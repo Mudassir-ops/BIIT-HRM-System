@@ -101,7 +101,7 @@ public class HomeInnerFragment extends Fragment implements AllJobsAdapter.ItemCl
     private void filter(String text) {
         ArrayList<JobResponse> filteredlist = new ArrayList<JobResponse>();
         for (JobResponse item : listOfAllJobResponses) {
-            if (item.getTitle().toLowerCase().contains(text.toLowerCase())) {
+            if (item.title.toLowerCase().contains(text.toLowerCase())) {
                 filteredlist.add(item);
             }
         }

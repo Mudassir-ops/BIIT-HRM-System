@@ -1,24 +1,24 @@
 package com.example.biithrmsystem.api.datamodel; 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
 public class Job{
-    @JsonProperty("JobApplications") 
+    @SerializedName("JobApplications")
     public ArrayList<JobApplication> jobApplications;
-    @JsonProperty("Jid") 
+    @SerializedName("Jid")
     public int jid;
-    @JsonProperty("Title") 
+    @SerializedName("Title")
     public String title;
     public String qualification;
-    @JsonProperty("Salary") 
+    @SerializedName("Salary")
     public String salary;
     public String experience;
-    @JsonProperty("LastDateOfApply") 
+    @SerializedName("LastDateOfApply")
     public String lastDateOfApply;
-    @JsonProperty("Location") 
+    @SerializedName("Location")
     public String location;
-    @JsonProperty("Description") 
+    @SerializedName("Description")
     public String description;
     public int noofvacancie;
 }

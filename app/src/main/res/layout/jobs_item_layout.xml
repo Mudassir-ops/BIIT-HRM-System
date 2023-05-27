@@ -24,7 +24,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_name_value"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:text="Mahzaib"
@@ -32,9 +32,22 @@
         android:textSize="@dimen/_16ssp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@+id/tv_name"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_name"
         app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_no_of_vacancies"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:text="(0)"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name_value"
+        app:layout_constraintStart_toEndOf="@+id/tv_name_value"
+        app:layout_constraintTop_toTopOf="@+id/tv_name_value" />
 
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -54,7 +67,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_number_value"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:text="Mahzaib"
@@ -62,10 +75,21 @@
         android:textSize="@dimen/_16ssp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@+id/tv_number"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@+id/tv_number"
         app:layout_constraintTop_toTopOf="@+id/tv_number" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_next"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:tint="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/tv_number_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_number_value"
+        app:srcCompat="@drawable/baseline_arrow_forward_24" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_cnic"

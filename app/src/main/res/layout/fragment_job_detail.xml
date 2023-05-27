@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/applicaiton_profile"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/_15sdp"
         android:background="@drawable/button_bg"
         android:backgroundTint="@color/light_white"
@@ -18,16 +18,15 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3">
+        app:layout_constraintVertical_bias="0.32">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:text="Job Title:"
             android:textColor="@color/black"
             android:textSize="@dimen/_16ssp"
@@ -158,6 +157,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
+            android:maxLines="3"
             android:text="Nill "
             android:textColor="@color/black"
             android:textSize="@dimen/_16ssp"
@@ -208,7 +208,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginHorizontal="@dimen/_35sdp"
-            android:layout_marginVertical="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_30sdp"
             android:background="@drawable/button_bg"
             android:backgroundTint="@color/app_icon_color"
             android:text="Apply"

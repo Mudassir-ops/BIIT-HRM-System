@@ -196,7 +196,11 @@ public class Repository {
         WebService.getWebApi().jobGet().enqueue(new Callback<List<JobResponse>>() {
             @Override
             public void onResponse(@NonNull Call<List<JobResponse>> call, @NonNull Response<List<JobResponse>> response) {
-                Log.e("sadsad", "onResponse: asdsa" + response.body());
+                assert response.body() != null;
+                Log.e("sadsad", "onResponse: asdsa" + response.body().get(0).title);
+
+
+
                 allJobsReponseMutableLiveData.postValue(response.body());
             }
 
@@ -235,11 +239,9 @@ public class Repository {
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 Log.e("sadsad", "onResponse: asdsa" + t);
-
             }
         });
     }
-
 
     public void JobFileApplicationPost(int jId, int Uid, String documentPath) {
         WebService.getWebApi().JobFileApplicationPost(jId, Uid, documentPath).enqueue(new Callback<String>() {
@@ -264,6 +266,7 @@ public class Repository {
                 Log.e("sadsad", "onResponse: asdsa" + response.body());
                 attendeceModel.postValue(response.body());
             }
+
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 Log.e("sadsad", "onResponse: asdsa" + t);

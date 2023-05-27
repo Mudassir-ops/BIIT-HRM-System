@@ -1,6 +1,7 @@
 package com.example.biithrmsystem.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,14 +42,15 @@ public class AllJobsAdapter extends RecyclerView.Adapter<AllJobsAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if (mData.get(position).getTitle() != null) {
-            holder.title.setText(mData.get(position).getTitle());
+        Log.e("mudususuu", "onBindViewHolder: " + mData.get(position).title);
+        if (mData.get(position).title != null) {
+            holder.title.setText(mData.get(position).title);
         }
-        if (mData.get(position).getSalary() != null) {
-            holder.salary.setText(mData.get(position).getSalary());
+        if (mData.get(position).salary != null) {
+            holder.salary.setText(mData.get(position).salary);
         }
-        if (mData.get(position).getLocation() != null) {
-            holder.location.setText(mData.get(position).getLocation());
+        if (mData.get(position).location!= null) {
+            holder.location.setText(mData.get(position).location);
         }
     }
 
@@ -58,7 +60,7 @@ public class AllJobsAdapter extends RecyclerView.Adapter<AllJobsAdapter.ViewHold
     }
 
     String getItem(int id) {
-        return mData.get(id).getTitle();
+        return mData.get(id).title;
     }
 
     public void setClickListener(ItemClickListener itemClickListener) {
@@ -86,7 +88,7 @@ public class AllJobsAdapter extends RecyclerView.Adapter<AllJobsAdapter.ViewHold
         @Override
         public void onClick(View view) {
             if (mClickListener != null)
-                mClickListener.onItemClick(view, mData.get(getAdapterPosition()).getJid());
+                mClickListener.onItemClick(view, mData.get(getAdapterPosition()).jid);
         }
     }
 }
