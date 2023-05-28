@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,10 +60,24 @@ public class LoginFragment extends Fragment {
                 public void onChanged(UserSignInResponse userSignInResponse) {
                     if (userSignInResponse != null) {
                         if (Objects.requireNonNull(Navigation.findNavController(v).getCurrentDestination()).getId() == R.id.navigation_login) {
-                            Navigation.findNavController(v).navigate(R.id.login_to_home_screen);
-                            SharedPreferences.setLogInUserId(userSignInResponse.uid);
-                            SharedPreferences.setEmailId(userSignInResponse.email);
-                            SharedPreferences.setPassword(userSignInResponse.password);
+
+                            if (Objects.equals(userSignInResponse.role, "guard")) {
+                                Navigation.findNavController(v).navigate(R.id.login_to_guard);
+                                SharedPreferences.setLogInUserId(userSignInResponse.uid);
+                                SharedPreferences.setEmailId(userSignInResponse.email);
+                                SharedPreferences.setPassword(userSignInResponse.password);
+                            } else if (Objects.equals(userSignInResponse.role, "hr")) {
+                                Navigation.findNavController(v).navigate(R.id.login_to_add_job);
+                                SharedPreferences.setLogInUserId(userSignInResponse.uid);
+                                SharedPreferences.setEmailId(userSignInResponse.email);
+                                SharedPreferences.setPassword(userSignInResponse.password);
+                            } else {
+                                Navigation.findNavController(v).navigate(R.id.login_to_home_screen);
+                                SharedPreferences.setLogInUserId(userSignInResponse.uid);
+                                SharedPreferences.setEmailId(userSignInResponse.email);
+                                SharedPreferences.setPassword(userSignInResponse.password);
+                            }
+                            Log.e("mudassir", "onChanged: " + userSignInResponse.role);
 
                         }
                     } else {
@@ -80,25 +95,14 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.drawerLayoutInner.tvAddJob.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.login_to_add_job);
+
             binding.drawerLayout.closeDrawers();
         });
 
-        Animation  animation= AnimationUtils.loadAnimation(requireContext(),R.anim.slide_out_top);
+        Animation animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_out_top);
         binding.bottomSheet.setVisibility(View.VISIBLE);
         binding.bottomSheet.setAnimation(animation);
 
-
-
-
-
-
-        binding.drawerLayoutInner.tvSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.login_to_guard);
-            }
-        });
     }
 
     @Override

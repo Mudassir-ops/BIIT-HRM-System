@@ -90,7 +90,7 @@ public class GuardHomeFragment extends Fragment implements GuardHomeAdapter.Item
             }
         }
         if (filteredlist.isEmpty()) {
-            Toast.makeText(requireContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
+            ///--  Toast.makeText(requireContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
         } else {
             adapter.filterList(filteredlist);
         }

@@ -71,7 +71,13 @@
         android:id="@+id/navigation_add_job"
         android:name="com.example.biithrmsystem.ui.fragments.addjob.AddJobFragment"
         android:label="AddJob"
-        tools:layout="@layout/fragment_add_job" />
+        tools:layout="@layout/fragment_add_job" >
+
+        <action
+            android:id="@+id/add_job_to_view_job_fragment"
+            app:destination="@id/navigation2_view_job" />
+    </fragment>
+
     <fragment
         android:id="@+id/navigation2_complete_profile"
         android:name="com.example.biithrmsystem.ui.fragments.signup.CompleteProfileFragment"
@@ -95,6 +101,13 @@
         android:name="com.example.biithrmsystem.ui.fragments.edit_profile.EditPorfileFragment"
         android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_porfile" />
+
+    <fragment
+        android:id="@+id/navigation2_view_job"
+        android:name="com.example.biithrmsystem.ui.fragments.viewhrjob.ApplicantPostedJobDisplayFragment"
+        android:label="View Job"
+        tools:layout="@layout/fragment_applicant_posted_job_display" />
+
 
     <fragment
         android:id="@+id/navigation2_edit_education"
