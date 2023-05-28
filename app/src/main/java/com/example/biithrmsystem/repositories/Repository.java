@@ -11,6 +11,7 @@ import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
 import com.example.biithrmsystem.api.datamodel.AttendenceModel;
 import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
+import com.example.biithrmsystem.api.datamodel.JobApplciantResponse;
 import com.example.biithrmsystem.api.datamodel.JobResponse;
 import com.example.biithrmsystem.api.datamodel.PostJobModel;
 import com.example.biithrmsystem.api.datamodel.SignupUserModel;
@@ -26,6 +27,9 @@ public class Repository {
     public MutableLiveData<UserSignInResponse> userSignInResponseLiveData = new MutableLiveData<>();
     public MutableLiveData<List<UserSignInResponse>> getUser = new MutableLiveData<List<UserSignInResponse>>();
     public MutableLiveData<List<AllJobsReponse>> allJobResponse = new MutableLiveData<List<AllJobsReponse>>();
+
+
+    public MutableLiveData<List<JobApplciantResponse>> allJobApplicantLivedata = new MutableLiveData<List<JobApplciantResponse>>();
     public MutableLiveData<String> postJobModelMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<String> postEducationModelMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<String> postExperienceModelMutableLiveData = new MutableLiveData<>();
@@ -40,6 +44,9 @@ public class Repository {
     public Repository() {
     }
 
+    public MutableLiveData<List<JobApplciantResponse>> getAllJobApplicantLivedata() {
+        return allJobApplicantLivedata;
+    }
 
     public MutableLiveData<String> getSignupLiveData() {
         return signupLiveData;
@@ -269,6 +276,22 @@ public class Repository {
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 Log.e("sadsad", "onResponse: asdsa" + t);
+
+            }
+        });
+    }
+
+    public void JoinJobApplicationwithidGet(int appid) {
+        WebService.getWebApi().JoinJobApplicationwithidGet(appid).enqueue(new Callback<List<JobApplciantResponse>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<JobApplciantResponse>> call, @NonNull Response<List<JobApplciantResponse>> response) {
+                Log.e("sadsad", "onResponseNew: asdsa" + response.body());
+                allJobApplicantLivedata.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<JobApplciantResponse>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
 
             }
         });

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.biithrmsystem.adapter.AllApllicationAdapter;
 import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
+import com.example.biithrmsystem.api.datamodel.JobApplciantResponse;
 import com.example.biithrmsystem.commons.SharedPreferences;
 import com.example.biithrmsystem.databinding.FragmentApplicantApplicationBinding;
 import com.example.biithrmsystem.repositories.Repository;
@@ -44,29 +45,26 @@ public class ApplicantApplicationFragment extends Fragment implements AllApllica
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        repository.AllJobApplicationGet();
 
-        repository.allApplicantJob.observe(getViewLifecycleOwner(), allJobsReponses -> {
-            Log.e("All_JOb_Response", "onViewCreated: " + allJobsReponses);
+        repository.JoinJobApplicationwithidGet(SharedPreferences.GetLogInUserId());
 
-            for (int i = 0; i < allJobsReponses.size(); i++) {
-                if (allJobsReponses.get(i).getUid() == SharedPreferences.GetLogInUserId()) {
-                    listOfAllJobs.add(allJobsReponses.get(i));
-                }
-            }
-
-            initRecyclerView(listOfAllJobs);
+        repository.allJobApplicantLivedata.observe(getViewLifecycleOwner(), jobApplciantResponses -> {
+            Log.e("All_JOb_Response", "onViewCreated: " + jobApplciantResponses);
+            initRecyclerView(jobApplciantResponses);
         });
         binding.headerLayout.ivMenu.setVisibility(View.INVISIBLE);
         binding.headerLayout.tvHeader.setText("Job Applications");
     }
 
     //---applyeidnjob
-    void initRecyclerView(List<AllJobsReponse> jobArrayList) {
+    void initRecyclerView(List<JobApplciantResponse> jobArrayList) {
         binding.allJobRv.setLayoutManager(new LinearLayoutManager(requireContext()));
+
         adapter = new AllApllicationAdapter(requireContext(), jobArrayList);
         adapter.setClickListener(this);
         binding.allJobRv.setAdapter(adapter);
+
+
     }
 
     @Override

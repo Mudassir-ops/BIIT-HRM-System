@@ -12,24 +12,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.biithrmsystem.R;
-import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
+import com.example.biithrmsystem.api.datamodel.JobApplciantResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AllApllicationAdapter extends RecyclerView.Adapter<AllApllicationAdapter.ViewHolder> {
 
-    private List<AllJobsReponse> mData;
+
+    private List<JobApplciantResponse> mData;
     private final LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    public AllApllicationAdapter(Context context, List<AllJobsReponse> data) {
+    public AllApllicationAdapter(Context context, List<JobApplciantResponse> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
 
     // method for filtering our recyclerview items.
-    public void filterList(ArrayList<AllJobsReponse> filterlist) {
+    public void filterList(ArrayList<JobApplciantResponse> filterlist) {
         mData = filterlist;
         notifyDataSetChanged();
     }
@@ -44,19 +45,20 @@ public class AllApllicationAdapter extends RecyclerView.Adapter<AllApllicationAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Log.e("mudassir", "onBindViewHolder: " + mData.get(position).getName());
-        if (mData.get(position).getName() != null) {
-            holder.title.setText(mData.get(position).getName());
+        Log.e("mudassir", "onBindViewHolder: " + mData.get(position).name);
+        if (mData.get(position).name != null) {
+            holder.title.setText(mData.get(position).name);
         } else {
             holder.title.setText("NIll");
         }
 
         holder.tvNumber.setText("Status:");
-        if (mData.get(position).getStatus() != null) {
-            holder.salary.setText(mData.get(position).getStatus());
+        if (mData.get(position).status != null) {
+            holder.salary.setText(mData.get(position).name);
         } else {
-            holder.salary.setText("NIll");
+            holder.salary.setText("Pending");
         }
+
         holder.location.setVisibility(View.GONE);
         holder.loactionName.setVisibility(View.GONE);
         holder.noOfVaccancyies.setVisibility(View.GONE);
@@ -69,7 +71,7 @@ public class AllApllicationAdapter extends RecyclerView.Adapter<AllApllicationAd
     }
 
     String getItem(int id) {
-        return mData.get(id).getName();
+        return mData.get(id).name;
     }
 
     public void setClickListener(ItemClickListener itemClickListener) {
@@ -108,7 +110,7 @@ public class AllApllicationAdapter extends RecyclerView.Adapter<AllApllicationAd
         @Override
         public void onClick(View view) {
             if (mClickListener != null)
-                mClickListener.onItemClick(view, mData.get(getAdapterPosition()).getJid());
+                mClickListener.onItemClick(view, mData.get(getAdapterPosition()).jid);
         }
     }
 }
