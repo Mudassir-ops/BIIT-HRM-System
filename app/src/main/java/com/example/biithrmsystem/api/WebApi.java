@@ -59,7 +59,11 @@ public interface WebApi {
 
     @FormUrlEncoded
     @POST("JobApplication/JobFileApplicationPost")
-    Call<String> JobFileApplicationPost(@Field("Jid") int Jid, @Field("Uid") int Uid, @Field("DocumentPath") String DocumentPath);
+    Call<String> JobFileApplicationPost(@Field("Jid") int Jid, @Field("Uid") int Uid, @Field("DocumentPath") String DocumentPath, @Field("name") String name);
+
+    @FormUrlEncoded
+    @POST("JobApplication/JobApplicationPost")
+    Call<String> JobApplicationPost(@Field("Jid") int Jid, @Field("Uid") int Uid, @Field("DocumentPath") String DocumentPath, @Field("name") String name);
 
     @POST("Attendance/AttendancePost")
     Call<String> AttendancePost(@Body AttendenceModel attendenceModel);

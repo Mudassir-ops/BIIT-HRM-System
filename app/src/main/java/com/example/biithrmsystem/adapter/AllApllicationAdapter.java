@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -58,6 +59,8 @@ public class AllApllicationAdapter extends RecyclerView.Adapter<AllApllicationAd
         }
         holder.location.setVisibility(View.GONE);
         holder.loactionName.setVisibility(View.GONE);
+        holder.noOfVaccancyies.setVisibility(View.GONE);
+        holder.iv_next.setVisibility(View.GONE);
     }
 
     @Override
@@ -82,9 +85,12 @@ public class AllApllicationAdapter extends RecyclerView.Adapter<AllApllicationAd
         TextView salary;
         TextView location;
         TextView loactionName;
-
         TextView tvNumber;
 
+        ImageView iv_next;
+
+
+        TextView noOfVaccancyies;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -93,6 +99,8 @@ public class AllApllicationAdapter extends RecyclerView.Adapter<AllApllicationAd
             location = itemView.findViewById(R.id.tv_cnic_value);
             tvNumber = itemView.findViewById(R.id.tv_number);
             loactionName = itemView.findViewById(R.id.tv_cnic);
+            noOfVaccancyies = itemView.findViewById(R.id.tv_vacancyies);
+            iv_next = itemView.findViewById(R.id.iv_next);
 
             itemView.setOnClickListener(this);
         }

@@ -3,6 +3,7 @@ package com.example.biithrmsystem.ui.fragments.JobDetailFragment;
 import static com.example.biithrmsystem.commons.Appconstants.JOB_ID;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -33,6 +35,7 @@ public class JobDetailFragment extends Fragment {
     private ParcelFileDescriptor inputPFD;
     private Uri uriOfDocument = null;
     private int jobId = 0;
+    private String jobTitle = "";
     private FragmentJobDetailBinding binding;
 
     @Override
@@ -63,6 +66,7 @@ public class JobDetailFragment extends Fragment {
         repository.jobDetailLiveData.observe(getViewLifecycleOwner(), jobs -> {
             Log.e("JObs", "onViewCreated: " + jobs.toString());
             initValue(binding.tvNameValue, jobs.get(0).title);
+            jobTitle = jobs.get(0).title;
             initValue(binding.tvNumberValue, jobs.get(0).salary);
             initValue(binding.tvCnicValue, jobs.get(0).location);
             initValue(binding.tvDateOfBirthValue, jobs.get(0).lastDateOfApply);
@@ -78,11 +82,10 @@ public class JobDetailFragment extends Fragment {
         binding.btnUploadCv.setOnClickListener(v -> mGetContent.launch("application/pdf"));
         binding.btnSubmit.setOnClickListener(v -> {
 
-
             if (uriOfDocument != null) {
-                repository.JobFileApplicationPost(jobId, SharedPreferences.GetLogInUserId(), uriOfDocument.toString());
+                repository.JobFileApplicationPost(jobId, SharedPreferences.GetLogInUserId(), uriOfDocument.toString(), jobTitle);
             } else {
-                repository.JobFileApplicationPost(jobId, SharedPreferences.GetLogInUserId(), "no cv selected");
+                repository.JobFileApplicationPost(jobId, SharedPreferences.GetLogInUserId(), "no cv selected", jobTitle);
                 Function.showToast("Select Your Cv First", requireContext());
             }
         });
@@ -91,7 +94,7 @@ public class JobDetailFragment extends Fragment {
             if (s != null) {
                 Function.showToast("" + s, requireContext());
             }
-            Navigation.findNavController(view).navigateUp();
+            dialog(view, s);
         });
     }
 
@@ -104,5 +107,23 @@ public class JobDetailFragment extends Fragment {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    void dialog(View view, String message) {
+        AlertDialog alertDialog = new AlertDialog.Builder(requireContext())
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Apply Job")
+                .setMessage(message)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Navigation.findNavController(view).navigateUp();
+                    }
+                })
+                .setNegativeButton("No", (dialogInterface, i) -> {
+
+                })
+                .show();
     }
 }

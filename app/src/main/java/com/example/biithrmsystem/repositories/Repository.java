@@ -200,7 +200,6 @@ public class Repository {
                 Log.e("sadsad", "onResponse: asdsa" + response.body().get(0).title);
 
 
-
                 allJobsReponseMutableLiveData.postValue(response.body());
             }
 
@@ -243,8 +242,8 @@ public class Repository {
         });
     }
 
-    public void JobFileApplicationPost(int jId, int Uid, String documentPath) {
-        WebService.getWebApi().JobFileApplicationPost(jId, Uid, documentPath).enqueue(new Callback<String>() {
+    public void JobFileApplicationPost(int jId, int Uid, String documentPath, String name) {
+        WebService.getWebApi().JobApplicationPost(jId, Uid, documentPath, name).enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 Log.e("sadsad", "onResponse: asdsa" + response.body());

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.biithrmsystem.adapter.AllApllicationAdapter;
 import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
+import com.example.biithrmsystem.commons.SharedPreferences;
 import com.example.biithrmsystem.databinding.FragmentApplicantApplicationBinding;
 import com.example.biithrmsystem.repositories.Repository;
 
@@ -44,9 +45,17 @@ public class ApplicantApplicationFragment extends Fragment implements AllApllica
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         repository.AllJobApplicationGet();
+
         repository.allApplicantJob.observe(getViewLifecycleOwner(), allJobsReponses -> {
             Log.e("All_JOb_Response", "onViewCreated: " + allJobsReponses);
-            initRecyclerView(allJobsReponses);
+
+            for (int i = 0; i < allJobsReponses.size(); i++) {
+                if (allJobsReponses.get(i).getUid() == SharedPreferences.GetLogInUserId()) {
+                    listOfAllJobs.add(allJobsReponses.get(i));
+                }
+            }
+
+            initRecyclerView(listOfAllJobs);
         });
         binding.headerLayout.ivMenu.setVisibility(View.INVISIBLE);
         binding.headerLayout.tvHeader.setText("Job Applications");

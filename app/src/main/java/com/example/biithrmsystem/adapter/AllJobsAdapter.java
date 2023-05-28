@@ -49,9 +49,11 @@ public class AllJobsAdapter extends RecyclerView.Adapter<AllJobsAdapter.ViewHold
         if (mData.get(position).salary != null) {
             holder.salary.setText(mData.get(position).salary);
         }
-        if (mData.get(position).location!= null) {
+        if (mData.get(position).location != null) {
             holder.location.setText(mData.get(position).location);
         }
+        holder.noOfVaccancyies.setText(""+ mData.get(position).noofvacancie);
+
     }
 
     @Override
@@ -75,12 +77,14 @@ public class AllJobsAdapter extends RecyclerView.Adapter<AllJobsAdapter.ViewHold
         TextView title;
         TextView salary;
         TextView location;
+        TextView noOfVaccancyies;
 
         ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.tv_name_value);
             salary = itemView.findViewById(R.id.tv_number_value);
             location = itemView.findViewById(R.id.tv_cnic_value);
+            noOfVaccancyies = itemView.findViewById(R.id.tv_vacancyies);
 
             itemView.setOnClickListener(this);
         }
