@@ -22,8 +22,6 @@ public class HomeActivity extends AppCompatActivity {
     //    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main2);
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
 //            if (destination.getId() == R.id.navigation_login) {

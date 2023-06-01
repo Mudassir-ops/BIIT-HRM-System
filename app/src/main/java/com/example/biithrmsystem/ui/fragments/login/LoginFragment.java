@@ -2,8 +2,6 @@ package com.example.biithrmsystem.ui.fragments.login;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,7 +61,6 @@ public class LoginFragment extends Fragment {
                             SharedPreferences.setLogInUserId(userSignInResponse.uid);
                             SharedPreferences.setEmailId(userSignInResponse.email);
                             SharedPreferences.setPassword(userSignInResponse.password);
-
                         }
                     } else {
                         binding.btLogin.setText("Login");
@@ -84,14 +81,9 @@ public class LoginFragment extends Fragment {
             binding.drawerLayout.closeDrawers();
         });
 
-        Animation  animation= AnimationUtils.loadAnimation(requireContext(),R.anim.slide_out_top);
+        Animation animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_out_top);
         binding.bottomSheet.setVisibility(View.VISIBLE);
         binding.bottomSheet.setAnimation(animation);
-
-
-
-
-
 
         binding.drawerLayoutInner.tvSetting.setOnClickListener(new View.OnClickListener() {
             @Override
