@@ -50,7 +50,10 @@ public class ApplicantApplicationFragment extends Fragment implements AllApllica
 
         repository.allJobApplicantLivedata.observe(getViewLifecycleOwner(), jobApplciantResponses -> {
             Log.e("All_JOb_Response", "onViewCreated: " + jobApplciantResponses);
-            initRecyclerView(jobApplciantResponses);
+
+            if( jobApplciantResponses!=null){
+                initRecyclerView(jobApplciantResponses);
+            }
         });
         binding.headerLayout.ivMenu.setVisibility(View.INVISIBLE);
         binding.headerLayout.tvHeader.setText("Job Applications");
@@ -58,12 +61,11 @@ public class ApplicantApplicationFragment extends Fragment implements AllApllica
 
     //---applyeidnjob
     void initRecyclerView(List<JobApplciantResponse> jobArrayList) {
-        binding.allJobRv.setLayoutManager(new LinearLayoutManager(requireContext()));
 
+        binding.allJobRv.setLayoutManager(new LinearLayoutManager(requireContext()));
         adapter = new AllApllicationAdapter(requireContext(), jobArrayList);
         adapter.setClickListener(this);
         binding.allJobRv.setAdapter(adapter);
-
 
     }
 

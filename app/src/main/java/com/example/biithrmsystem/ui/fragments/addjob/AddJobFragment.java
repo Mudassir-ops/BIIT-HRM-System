@@ -51,6 +51,12 @@ public class AddJobFragment extends Fragment {
             myCalendar.set(Calendar.DAY_OF_MONTH, day);
             updateLabel();
         };
+
+        binding.headerLayout.ivMenu.setImageResource(R.drawable.baseline_preview_24);
+        binding.headerLayout.ivMenu.setOnClickListener(v -> {
+            Navigation.findNavController(view).navigate(R.id.add_job_to_view_job_fragment);
+        });
+
         binding.headerLayout.tvHeader.setText("Post Job");
         binding.spinnerLastDateToApply.setOnClickListener(view12 -> new DatePickerDialog(requireContext(), date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show());
         binding.btnPost.setOnClickListener(v -> {
@@ -87,12 +93,10 @@ public class AddJobFragment extends Fragment {
             }
 
         });
-        repository.postJobModelMutableLiveData.observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                Toast.makeText(requireContext(), "" + s, Toast.LENGTH_LONG).show();
-                Navigation.findNavController(view).navigateUp();
-            }
+        repository.postJobModelMutableLiveData.observe(getViewLifecycleOwner(), s -> {
+            Navigation.findNavController(view).navigate(R.id.add_job_to_view_job_fragment);
+//                Toast.makeText(requireContext(), "" + s, Toast.LENGTH_LONG).show();
+//                Navigation.findNavController(view).navigateUp();
         });
 
     }

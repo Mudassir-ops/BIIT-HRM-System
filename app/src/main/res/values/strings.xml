@@ -40,10 +40,10 @@
         <item>female </item>
     </string-array>
     <string-array name="degree_array">
-        <item>Select Degree </item>
+        <item><b>Select Degree</b> </item>
         <item>Software </item>
-        <item>Mechanical </item>
-        <item>Electronic </item>
+        <item>Computer Science </item>
+        <item>Information Technology </item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
