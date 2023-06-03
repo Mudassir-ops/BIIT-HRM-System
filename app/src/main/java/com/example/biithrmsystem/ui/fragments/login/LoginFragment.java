@@ -66,16 +66,19 @@ public class LoginFragment extends Fragment {
                                 SharedPreferences.setLogInUserId(userSignInResponse.uid);
                                 SharedPreferences.setEmailId(userSignInResponse.email);
                                 SharedPreferences.setPassword(userSignInResponse.password);
+                                SharedPreferences.setUserType("guard");
                             } else if (Objects.equals(userSignInResponse.role, "hr")) {
                                 Navigation.findNavController(v).navigate(R.id.login_to_add_job);
                                 SharedPreferences.setLogInUserId(userSignInResponse.uid);
                                 SharedPreferences.setEmailId(userSignInResponse.email);
+                                SharedPreferences.setUserType("hr");
                                 SharedPreferences.setPassword(userSignInResponse.password);
                             } else {
                                 Navigation.findNavController(v).navigate(R.id.login_to_home_screen);
                                 SharedPreferences.setLogInUserId(userSignInResponse.uid);
                                 SharedPreferences.setEmailId(userSignInResponse.email);
                                 SharedPreferences.setPassword(userSignInResponse.password);
+                                SharedPreferences.setUserType("else");
                             }
                             Log.e("mudassir", "onChanged: " + userSignInResponse.role);
 

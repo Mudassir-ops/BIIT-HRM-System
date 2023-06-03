@@ -8,6 +8,7 @@ public class SharedPreferences {
 
     private static final String APPLICANT_ID = "APPLICANT_ID";
     private static final String LOGGED_IN_EMAIL = "LOGGED_IN_EMAIL";
+    private static final String USER_TYPE = "USER_TYPE";
     private static final String LOGGED_IN_PASSWORD = "LOGGED_IN_PASSWORD";
     private static final String CHECKED_IN_USER_0 = "CHECKED_IN_USER_0";
     private static final String CHECKED_IN_USER_1 = "CHECKED_IN_USER_1";
@@ -34,6 +35,16 @@ public class SharedPreferences {
 
     public static int GetLogInUserId() {
         return preferences.getInt(APPLICANT_ID, 0);
+    }
+
+    public static void setUserType(String token) {
+        android.content.SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(USER_TYPE, token);
+        editor.apply();
+    }
+
+    public static String GetUserType() {
+        return preferences.getString(USER_TYPE, "");
     }
 
 

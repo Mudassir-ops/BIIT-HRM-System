@@ -103,11 +103,7 @@ public class GuardHomeFragment extends Fragment implements GuardHomeAdapter.Item
         bundle.putString("TITLE", listOfAllJobs.get(position).getTitle());
         bundle.putString("PHON_NO", listOfAllJobs.get(position).getPh0neNO());
         bundle.putInt("POSITION", position);
-        if (adapter.mData.get(position).getCheckedIn()) {
-            bundle.putBoolean("TYPE", false);
-        } else {
-            bundle.putBoolean("TYPE", true);
-        }
+        bundle.putBoolean("TYPE", !adapter.mData.get(position).getCheckedIn());
         Navigation.findNavController(view).navigate(R.id.guard_home_to_checkin, bundle);
     }
 

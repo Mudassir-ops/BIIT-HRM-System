@@ -1,34 +1,36 @@
 package com.example.biithrmsystem.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.biithrmsystem.R;
-import com.example.biithrmsystem.api.datamodel.JobResponse;
+import com.example.biithrmsystem.api.datamodel.UserRoleResponse;
+import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllJobsAdapter extends RecyclerView.Adapter<AllJobsAdapter.ViewHolder> {
-
-    private List<JobResponse> mData;
+public class ComitteHeadAdapter extends RecyclerView.Adapter<ComitteHeadAdapter.ViewHolder> {
+    public List<UserRoleResponse> mData;
     private final LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    Context context;
 
-    public AllJobsAdapter(Context context, List<JobResponse> data) {
+    public ComitteHeadAdapter(Context context, List<UserRoleResponse> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.context = context;
     }
 
     // method for filtering our recyclerview items.
-    public void filterList(ArrayList<JobResponse> filterlist) {
+    public void filterList(ArrayList<UserRoleResponse> filterlist) {
         mData = filterlist;
         notifyDataSetChanged();
     }
@@ -36,23 +38,20 @@ public class AllJobsAdapter extends RecyclerView.Adapter<AllJobsAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.jobs_item_layout, parent, false);
+        View view = mInflater.inflate(R.layout.comittie_head_item_layout, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.e("mudususuu", "onBindViewHolder: " + mData.get(position).title);
-        if (mData.get(position).title != null) {
-            holder.title.setText(mData.get(position).title);
+        if (mData.get(position).fname != null) {
+            holder.title.setText(mData.get(position).fname);
         }
-        if (mData.get(position).salary != null) {
-            holder.salary.setText(mData.get(position).salary);
+
+        if (mData.get(position).image != null) {
+
+            //holder.title.setText(mData.get(position).image);
         }
-        if (mData.get(position).location != null) {
-            holder.location.setText(mData.get(position).location);
-        }
-        holder.noOfVaccancyies.setText("" + mData.get(position).noofvacancie);
 
     }
 
@@ -62,7 +61,7 @@ public class AllJobsAdapter extends RecyclerView.Adapter<AllJobsAdapter.ViewHold
     }
 
     String getItem(int id) {
-        return mData.get(id).title;
+        return mData.get(id).fname;
     }
 
     public void setClickListener(ItemClickListener itemClickListener) {
@@ -75,24 +74,21 @@ public class AllJobsAdapter extends RecyclerView.Adapter<AllJobsAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title;
-        TextView salary;
-        TextView location;
-        TextView noOfVaccancyies;
+        ShapeableImageView image;
+        ConstraintLayout cardView;
 
         ViewHolder(View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.tv_name_value);
-            salary = itemView.findViewById(R.id.tv_number_value);
-            location = itemView.findViewById(R.id.tv_cnic_value);
-            noOfVaccancyies = itemView.findViewById(R.id.tv_vacancyies);
-
+            title = itemView.findViewById(R.id.tv_name);
+            image = itemView.findViewById(R.id.iv_applicant_dp);
+            cardView = itemView.findViewById(R.id.cardView);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
             if (mClickListener != null)
-                mClickListener.onItemClick(view, mData.get(getAdapterPosition()).jid);
+                mClickListener.onItemClick(view, mData.get(getAdapterPosition()).uid);
         }
     }
 }

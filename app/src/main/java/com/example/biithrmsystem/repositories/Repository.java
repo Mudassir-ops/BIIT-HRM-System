@@ -9,12 +9,14 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.biithrmsystem.api.WebService;
 import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
 import com.example.biithrmsystem.api.datamodel.AttendenceModel;
+import com.example.biithrmsystem.api.datamodel.ComitteeBaseResponseModel;
 import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
 import com.example.biithrmsystem.api.datamodel.JobApplciantResponse;
 import com.example.biithrmsystem.api.datamodel.JobResponse;
 import com.example.biithrmsystem.api.datamodel.PostJobModel;
 import com.example.biithrmsystem.api.datamodel.SignupUserModel;
+import com.example.biithrmsystem.api.datamodel.UserRoleResponse;
 import com.example.biithrmsystem.api.datamodel.UserSignInResponse;
 
 import java.util.List;
@@ -30,12 +32,15 @@ public class Repository {
 
 
     public MutableLiveData<List<JobApplciantResponse>> allJobApplicantLivedata = new MutableLiveData<List<JobApplciantResponse>>();
+    public MutableLiveData<List<ComitteeBaseResponseModel>> allCOmittereponse = new MutableLiveData<List<ComitteeBaseResponseModel>>();
+    public MutableLiveData<List<UserRoleResponse>> userRoleGet = new MutableLiveData<List<UserRoleResponse>>();
     public MutableLiveData<String> postJobModelMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<String> postEducationModelMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<String> postExperienceModelMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<String> signupLiveData = new MutableLiveData<>();
     public MutableLiveData<String> updateUser = new MutableLiveData<>();
     public MutableLiveData<String> appyJob = new MutableLiveData<>();
+    public MutableLiveData<String> deleteComitte = new MutableLiveData<>();
     public MutableLiveData<String> attendeceModel = new MutableLiveData<>();
     public MutableLiveData<List<JobResponse>> allJobsReponseMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<List<AllJobsReponse>> allApplicantJob = new MutableLiveData<>();
@@ -297,5 +302,70 @@ public class Repository {
         });
     }
 
+    public void AllCommitteeGet() {
+        WebService.getWebApi().AllCommitteeGet().enqueue(new Callback<List<ComitteeBaseResponseModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<ComitteeBaseResponseModel>> call, @NonNull Response<List<ComitteeBaseResponseModel>> response) {
+                Log.e("sadsad", "onResponseNew: asdsa" + response.body());
+                allCOmittereponse.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<ComitteeBaseResponseModel>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+
+    public void deleteCommittee(int id) {
+        WebService.getWebApi().deleteCommittee(id).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                Log.e("sadsad", "onResponseNew: asdsa" + response.body());
+                deleteComitte.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+    public void UserroleGet() {
+        WebService.getWebApi().UserroleGet().enqueue(new Callback<List<UserRoleResponse>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<UserRoleResponse>> call, @NonNull Response<List<UserRoleResponse>> response) {
+                Log.e("sadsad", "onResponseNew: asdsa" + response.body());
+                userRoleGet.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<UserRoleResponse>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+
+    public void Createcommitte(String comittieTitle, int commitieHead) {
+        WebService.getWebApi().Createcommitte(comittieTitle, commitieHead).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                Log.e("sadsad", "onResponseNew: asdsa" + response.body());
+                deleteComitte.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
 
 }

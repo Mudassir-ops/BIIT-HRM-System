@@ -17,6 +17,14 @@
             android:id="@+id/spalsh_to_login"
             app:destination="@id/navigation_login" />
 
+        <action
+            android:id="@+id/login_to_add_job"
+            app:destination="@id/navigation_add_job" />
+
+        <action
+            android:id="@+id/login_to_guard"
+            app:destination="@id/navigation_guard" />
+
     </fragment>
 
     <fragment
@@ -71,11 +79,16 @@
         android:id="@+id/navigation_add_job"
         android:name="com.example.biithrmsystem.ui.fragments.addjob.AddJobFragment"
         android:label="AddJob"
-        tools:layout="@layout/fragment_add_job" >
+        tools:layout="@layout/fragment_add_job">
 
         <action
             android:id="@+id/add_job_to_view_job_fragment"
             app:destination="@id/navigation2_view_job" />
+
+
+        <action
+            android:id="@+id/add_job_to_comitte_home_fragment"
+            app:destination="@id/navigation_comitte_home" />
     </fragment>
 
     <fragment
@@ -146,4 +159,39 @@
         android:name="com.example.biithrmsystem.ui.fragments.attendence_checkin.AttendenceCheckInFragment"
         android:label="Attendence Check IN"
         tools:layout="@layout/fragment_attendence_check_in" />
+
+
+    <fragment
+        android:id="@+id/navigation_comitte_home"
+        android:name="com.example.biithrmsystem.ui.fragments.commite.ComitteHomeFragment"
+        android:label="Comitte Home"
+        tools:layout="@layout/fragment_comitte_home">
+        <action
+            android:id="@+id/comitte_home_to_comitte_head"
+            app:destination="@+id/navigation_comitte_head" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_comitte_head"
+        android:name="com.example.biithrmsystem.ui.fragments.commite.ComiiteHeadFragment"
+        android:label="Comitte Home"
+        tools:layout="@layout/fragment_comitte_head">
+        <action
+            android:id="@+id/comitte_head_to_create_commitie"
+            app:destination="@+id/navigation_create_committiee" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_create_committiee"
+        android:name="com.example.biithrmsystem.ui.fragments.create_comittie_fragment.CreateCommittieFragment"
+        android:label="Create Comiitie"
+        tools:layout="@layout/fragment_create_committie">
+
+        <action
+            android:id="@+id/action_navigation_create_committiee_to_navigation_comitte_home"
+            app:destination="@id/navigation_comitte_home" />
+    </fragment>
+
+
 </navigation>

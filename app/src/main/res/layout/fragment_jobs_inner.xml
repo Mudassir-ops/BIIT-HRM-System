@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.home.home_bottom_navigation.JobsInnerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Update blank comitteHeadFragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

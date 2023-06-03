@@ -37,10 +37,18 @@ public class SplashFragment extends Fragment {
         final Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(() ->
         {
-            if (SharedPreferences.GetLogInUserId()==0) {
+            if (SharedPreferences.GetLogInUserId() == 0) {
                 Navigation.findNavController(view).navigate(R.id.spalsh_to_login);
             } else {
-                Navigation.findNavController(view).navigate(R.id.spalsh_to_home);
+
+                if (SharedPreferences.GetUserType().equals("hr")) {
+                    Navigation.findNavController(view).navigate(R.id.login_to_add_job);
+                } else if (SharedPreferences.GetUserType().equals("guard")) {
+                    Navigation.findNavController(view).navigate(R.id.login_to_guard);
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.spalsh_to_home);
+                }
+
             }
 
 

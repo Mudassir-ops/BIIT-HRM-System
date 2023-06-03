@@ -2,12 +2,14 @@ package com.example.biithrmsystem.api;
 
 import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
 import com.example.biithrmsystem.api.datamodel.AttendenceModel;
+import com.example.biithrmsystem.api.datamodel.ComitteeBaseResponseModel;
 import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
 import com.example.biithrmsystem.api.datamodel.JobApplciantResponse;
 import com.example.biithrmsystem.api.datamodel.JobResponse;
 import com.example.biithrmsystem.api.datamodel.PostJobModel;
 import com.example.biithrmsystem.api.datamodel.SignupUserModel;
+import com.example.biithrmsystem.api.datamodel.UserRoleResponse;
 import com.example.biithrmsystem.api.datamodel.UserSignInResponse;
 
 import java.util.List;
@@ -73,12 +75,24 @@ public interface WebApi {
     Call<String> AttendancePost(@Body AttendenceModel attendenceModel);
 
 
-
-
-    //-------Actually we pass user id here
     @GET("JobApplication/JoinJobApplicationwithidGet")
     Call<List<JobApplciantResponse>> JoinJobApplicationwithidGet(@Query("appid") int appid);
 
+
+    @GET("Committee/AllCommitteeGet")
+    Call<List<ComitteeBaseResponseModel>> AllCommitteeGet();
+
+    @GET("Committee/DeleteCommitte")
+    Call<String> deleteCommittee(@Query("CommitteeId") int CommitteeId);
+
+
+    @GET("User/UserroleGet")
+    Call<List<UserRoleResponse>> UserroleGet();
+
+
+    @FormUrlEncoded
+    @POST("Committee/Createcommitte")
+    Call<String> Createcommitte(@Field("CommitteeTitle") String CommitteeTitle, @Field("CommitteeHead") int CommitteeHead);
 
 }
 
