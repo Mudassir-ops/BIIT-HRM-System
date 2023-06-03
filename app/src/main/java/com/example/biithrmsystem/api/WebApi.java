@@ -16,6 +16,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -82,13 +83,11 @@ public interface WebApi {
     @GET("Committee/AllCommitteeGet")
     Call<List<ComitteeBaseResponseModel>> AllCommitteeGet();
 
-    @GET("Committee/DeleteCommitte")
+    @DELETE("Committee/DeleteCommitte")
     Call<String> deleteCommittee(@Query("CommitteeId") int CommitteeId);
-
 
     @GET("User/UserroleGet")
     Call<List<UserRoleResponse>> UserroleGet();
-
 
     @FormUrlEncoded
     @POST("Committee/Createcommitte")
