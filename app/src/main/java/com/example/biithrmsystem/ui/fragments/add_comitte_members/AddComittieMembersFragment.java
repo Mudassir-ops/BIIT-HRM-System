@@ -10,29 +10,46 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.biithrmsystem.R;
+import com.example.biithrmsystem.adapter.ComitteAddedMembersAdapter;
 import com.example.biithrmsystem.api.datamodel.ComitteReponseParcableModel;
+import com.example.biithrmsystem.api.datamodel.MemberOfComittieReponse;
 import com.example.biithrmsystem.databinding.FragmentAddComittieMembersBinding;
+import com.example.biithrmsystem.repositories.Repository;
 
-public class AddComittieMembersFragment extends Fragment {
+import java.util.ArrayList;
+
+public class AddComittieMembersFragment extends Fragment implements ComitteAddedMembersAdapter.ItemClickListener {
 
     private ComitteReponseParcableModel comitteReponseParcableModel;
     private FragmentAddComittieMembersBinding binding;
+    private Repository repository = null;
+    ComitteAddedMembersAdapter adapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        repository = new Repository();
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentAddComittieMembersBinding.inflate(inflater, container, false);
         comitteReponseParcableModel = new ComitteReponseParcableModel();
+        assert getArguments() != null;
+        comitteReponseParcableModel = getArguments().getParcelable("MODEL");
+        Log.e("mahziab", "onViewCreated: " + comitteReponseParcableModel.committeeTitle);
+        repository.JobappWithCommitteeGet(comitteReponseParcableModel.committeeId);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        comitteReponseParcableModel = getArguments().getParcelable("MODEL");
-        Log.e("mahziab", "onViewCreated: " + comitteReponseParcableModel.committeeTitle);
+
         binding.tvLabelComitteValue.setText("" + comitteReponseParcableModel.committeeTitle);
 
         binding.addMembers.setOnClickListener(v -> {
@@ -42,6 +59,36 @@ public class AddComittieMembersFragment extends Fragment {
 
         });
 
+        repository.comittieMembers.observe(getViewLifecycleOwner(), memberOfComittieReponses -> {
+            for (int i = 0; i < memberOfComittieReponses.size(); i++) {
+                Log.e("USER_ID", "onViewCreated: " + memberOfComittieReponses.get(i).uid);
+                repository.getUser(memberOfComittieReponses.get(i).uid);
+            }
+            initRecyclerView((ArrayList<MemberOfComittieReponse>) memberOfComittieReponses);
+        });
+
+
+        repository.getUser.observe(getViewLifecycleOwner(), userSignInResponses -> {
+
+            for (int i = 0; i < userSignInResponses.size(); i++) {
+                Log.e("userTitle", "onChanged: " + userSignInResponses.get(i).fname + " " + userSignInResponses.get(i).lname);
+            }
+
+        });
+
+    }
+
+
+    void initRecyclerView(ArrayList<MemberOfComittieReponse> jobArrayList) {
+        binding.rvMembers.setLayoutManager(new GridLayoutManager(requireContext(), 2));
+        adapter = new ComitteAddedMembersAdapter(requireContext(), jobArrayList);
+        adapter.setClickListener(this);
+        binding.rvMembers.setAdapter(adapter);
+    }
+
+
+    @Override
+    public void onItemClick(View view, int position) {
 
     }
 }

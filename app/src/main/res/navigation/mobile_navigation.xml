@@ -196,7 +196,6 @@
             app:destination="@id/navigation_comitte_home" />
     </fragment>
 
-
     <fragment
         android:id="@+id/navigation_add_comittie_members"
         android:name="com.example.biithrmsystem.ui.fragments.add_comitte_members.AddComittieMembersFragment"

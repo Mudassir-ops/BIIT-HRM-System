@@ -49,8 +49,12 @@ public class ComitteHomeFragment extends Fragment implements AllComittesdAdapter
         });
 
         binding.fab.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.comitte_home_to_comitte_head);
+            Bundle bundle = new Bundle();
+            bundle.putInt("COmiite_ID", 0);
+            Navigation.findNavController(v).navigate(R.id.comitte_home_to_comitte_head, bundle);
         });
+
+
     }
 
     void initRecyclerView(List<ComitteeBaseResponseModel> jobResponseArrayList) {

@@ -48,11 +48,14 @@ public class ComiiteHeadFragment extends Fragment implements ComitteHeadAdapter.
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         assert getArguments() != null;
         COmiitieId = getArguments().getInt("COmiite_ID");
         Log.e("mahzaib", "onViewCreated: " + COmiitieId);
-
+        if (COmiitieId == 0) {
+            binding.jobSearchView.setQueryHint("Search Committee Member...");
+        } else {
+            binding.jobSearchView.setQueryHint("Search Committee Head...");
+        }
         repository.userRoleGet.observe(getViewLifecycleOwner(), userRoleResponses -> {
             updatedList.addAll(userRoleResponses);
             initRecyclerView(updatedList);
@@ -75,18 +78,24 @@ public class ComiiteHeadFragment extends Fragment implements ComitteHeadAdapter.
             public void callSearch(String query) {
                 filter(query);
             }
-
         });
-
     }
 
     @Override
     public void onItemClick(View view, int position) {
-
-        Bundle bundle = new Bundle();
-        bundle.putInt("USER_ID", position);
-        Navigation.findNavController(view).navigate(R.id.comitte_head_to_create_commitie, bundle);
-
+        if (COmiitieId == 0) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("USER_ID", position);
+            bundle.putInt("Comiite_ID", COmiitieId);
+            bundle.putString("FROM", "CREATE_COMMITIEE");
+            Navigation.findNavController(view).navigate(R.id.comitte_head_to_create_commitie, bundle);
+        } else {
+            Bundle bundle = new Bundle();
+            bundle.putInt("USER_ID", position);
+            bundle.putString("FROM", "CREATE_MEMBER");
+            bundle.putInt("Comiite_ID", COmiitieId);
+            Navigation.findNavController(view).navigate(R.id.comitte_head_to_create_commitie, bundle);
+        }
     }
 
     void initRecyclerView(ArrayList<UserRoleResponse> jobArrayList) {

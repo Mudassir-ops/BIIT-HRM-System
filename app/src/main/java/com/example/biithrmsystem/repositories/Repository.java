@@ -14,6 +14,7 @@ import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
 import com.example.biithrmsystem.api.datamodel.JobApplciantResponse;
 import com.example.biithrmsystem.api.datamodel.JobResponse;
+import com.example.biithrmsystem.api.datamodel.MemberOfComittieReponse;
 import com.example.biithrmsystem.api.datamodel.PostJobModel;
 import com.example.biithrmsystem.api.datamodel.SignupUserModel;
 import com.example.biithrmsystem.api.datamodel.UserRoleResponse;
@@ -34,6 +35,7 @@ public class Repository {
     public MutableLiveData<List<JobApplciantResponse>> allJobApplicantLivedata = new MutableLiveData<List<JobApplciantResponse>>();
     public MutableLiveData<List<ComitteeBaseResponseModel>> allCOmittereponse = new MutableLiveData<List<ComitteeBaseResponseModel>>();
     public MutableLiveData<List<UserRoleResponse>> userRoleGet = new MutableLiveData<List<UserRoleResponse>>();
+    public MutableLiveData<List<MemberOfComittieReponse>> comittieMembers = new MutableLiveData<List<MemberOfComittieReponse>>();
     public MutableLiveData<String> postJobModelMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<String> postEducationModelMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<String> postExperienceModelMutableLiveData = new MutableLiveData<>();
@@ -41,6 +43,7 @@ public class Repository {
     public MutableLiveData<String> updateUser = new MutableLiveData<>();
     public MutableLiveData<String> appyJob = new MutableLiveData<>();
     public MutableLiveData<String> deleteComitte = new MutableLiveData<>();
+    public MutableLiveData<String> addMemebr = new MutableLiveData<>();
     public MutableLiveData<String> attendeceModel = new MutableLiveData<>();
     public MutableLiveData<List<JobResponse>> allJobsReponseMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<List<AllJobsReponse>> allApplicantJob = new MutableLiveData<>();
@@ -368,4 +371,36 @@ public class Repository {
         });
     }
 
+    public void CreateCommitteMember(int comittieId, int userId) {
+        WebService.getWebApi().Createcommittemember(comittieId, userId).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                Log.e("sadsad", "onResponseNew: asdsa" + response.body());
+                addMemebr.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+
+    public void JobappWithCommitteeGet(int commitId) {
+        WebService.getWebApi().JobappWithCommitteeGet(commitId).enqueue(new Callback<List<MemberOfComittieReponse>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<MemberOfComittieReponse>> call, @NonNull Response<List<MemberOfComittieReponse>> response) {
+                Log.e("sadsad", "onResponseNew: asdsa" + response.body());
+                comittieMembers.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<MemberOfComittieReponse>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
 }

@@ -7,6 +7,7 @@ import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
 import com.example.biithrmsystem.api.datamodel.JobApplciantResponse;
 import com.example.biithrmsystem.api.datamodel.JobResponse;
+import com.example.biithrmsystem.api.datamodel.MemberOfComittieReponse;
 import com.example.biithrmsystem.api.datamodel.PostJobModel;
 import com.example.biithrmsystem.api.datamodel.SignupUserModel;
 import com.example.biithrmsystem.api.datamodel.UserRoleResponse;
@@ -89,6 +90,7 @@ public interface WebApi {
     @GET("User/UserroleGet")
     Call<List<UserRoleResponse>> UserroleGet();
 
+
     @FormUrlEncoded
     @POST("Committee/Createcommitte")
     Call<String> Createcommitte(@Field("CommitteeTitle") String CommitteeTitle, @Field("CommitteeHead") int CommitteeHead);
@@ -96,8 +98,15 @@ public interface WebApi {
     @GET("Committee/CommitteeGet")
     Call<String> CommitteeGet(@Query("comid") int comid);
 
+    @FormUrlEncoded
+    @POST("Committeemembers/Createcommittemember")
+    Call<String> Createcommittemember(@Field("CommitteeId") int CommitteeId, @Field("Uid") int Uid);
 
-//    api/Committee/CommitteeGet?comid={comid}
+
+    @GET("Committeemembers/JobappWithCommitteeGet")
+    Call<List<MemberOfComittieReponse>> JobappWithCommitteeGet(@Query("comid") int comid);
+
+    //
 }
 
 
