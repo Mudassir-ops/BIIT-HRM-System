@@ -51,6 +51,10 @@ public class AllComittesdAdapter extends RecyclerView.Adapter<AllComittesdAdapte
             this.mClickListener.onDeleteClick(v, mData.get(position).committeeId);
         });
 
+        holder.itemView.setOnClickListener(v -> {
+            this.mClickListener.onItemClick(v,mData.get(position));
+        });
+
     }
 
     @Override
@@ -67,7 +71,8 @@ public class AllComittesdAdapter extends RecyclerView.Adapter<AllComittesdAdapte
     }
 
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view,  ComitteeBaseResponseModel comitteeBaseResponseModel);
+
         void onDeleteClick(View view, int position);
     }
 
@@ -80,13 +85,14 @@ public class AllComittesdAdapter extends RecyclerView.Adapter<AllComittesdAdapte
             super(itemView);
             tv_value = itemView.findViewById(R.id.tv_value);
             iv_delete = itemView.findViewById(R.id.iv_delete);
+            iv_delete.setOnClickListener(this);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
             if (mClickListener != null)
-                mClickListener.onItemClick(view, mData.get(getAdapterPosition()).committeeId);
+                mClickListener.onItemClick(view, mData.get(getAdapterPosition()));
             assert mClickListener != null;
             mClickListener.onDeleteClick(view, mData.get(getAdapterPosition()).committeeId);
         }

@@ -169,6 +169,9 @@
         <action
             android:id="@+id/comitte_home_to_comitte_head"
             app:destination="@+id/navigation_comitte_head" />
+        <action
+            android:id="@+id/action_navigation_comitte_home_to_navigation_add_comittie_members"
+            app:destination="@id/navigation_add_comittie_members" />
     </fragment>
 
 
@@ -193,5 +196,15 @@
             app:destination="@id/navigation_comitte_home" />
     </fragment>
 
+
+    <fragment
+        android:id="@+id/navigation_add_comittie_members"
+        android:name="com.example.biithrmsystem.ui.fragments.add_comitte_members.AddComittieMembersFragment"
+        android:label="Add Comittie Members"
+        tools:layout="@layout/fragment_add_comittie_members">
+        <action
+            android:id="@+id/action_navigation_add_comittie_members_to_navigation_comitte_head"
+            app:destination="@id/navigation_comitte_head" />
+    </fragment>
 
 </navigation>

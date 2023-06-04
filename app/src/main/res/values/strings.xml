@@ -58,4 +58,5 @@
     <string name="description">Description</string>
     <string name="comitte">Comitte</string>
     <string name="hello_blank_fragment">hello_blank_fragment</string>
+    <string name="coimittie_members">Coimittie Members:</string>
 </resources>

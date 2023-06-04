@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -21,8 +20,6 @@ import com.example.biithrmsystem.databinding.FragmentComitteHeadBinding;
 import com.example.biithrmsystem.repositories.Repository;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 
 public class ComiiteHeadFragment extends Fragment implements ComitteHeadAdapter.ItemClickListener {
@@ -31,6 +28,7 @@ public class ComiiteHeadFragment extends Fragment implements ComitteHeadAdapter.
     private ArrayList<UserRoleResponse> updatedList;
     ComitteHeadAdapter adapter;
 
+    private int COmiitieId = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,16 +48,17 @@ public class ComiiteHeadFragment extends Fragment implements ComitteHeadAdapter.
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        repository.userRoleGet.observe(getViewLifecycleOwner(), new Observer<List<UserRoleResponse>>() {
-            @Override
-            public void onChanged(List<UserRoleResponse> userRoleResponses) {
-                updatedList.addAll(userRoleResponses);
-                initRecyclerView(updatedList);
-                Log.e("mudassir_satti", "onChanged: " + userRoleResponses);
 
-            }
+        assert getArguments() != null;
+        COmiitieId = getArguments().getInt("COmiite_ID");
+        Log.e("mahzaib", "onViewCreated: " + COmiitieId);
+
+        repository.userRoleGet.observe(getViewLifecycleOwner(), userRoleResponses -> {
+            updatedList.addAll(userRoleResponses);
+            initRecyclerView(updatedList);
+            Log.e("mudassir_satti", "onChanged: " + userRoleResponses.get(0).image);
+
         });
-
         binding.jobSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -84,9 +83,9 @@ public class ComiiteHeadFragment extends Fragment implements ComitteHeadAdapter.
     @Override
     public void onItemClick(View view, int position) {
 
-        Bundle bundle=new Bundle();
-        bundle.putInt("USER_ID",position);
-        Navigation.findNavController(view).navigate(R.id.comitte_head_to_create_commitie,bundle);
+        Bundle bundle = new Bundle();
+        bundle.putInt("USER_ID", position);
+        Navigation.findNavController(view).navigate(R.id.comitte_head_to_create_commitie, bundle);
 
     }
 
@@ -98,7 +97,7 @@ public class ComiiteHeadFragment extends Fragment implements ComitteHeadAdapter.
     }
 
     private void filter(String text) {
-        ArrayList<UserRoleResponse> filteredlist = new ArrayList<UserRoleResponse>();
+        ArrayList<UserRoleResponse> filteredlist = new ArrayList<>();
         for (UserRoleResponse item : updatedList) {
             if (item.fname.toLowerCase().contains(text.toLowerCase())) {
                 filteredlist.add(item);

@@ -93,6 +93,11 @@ public interface WebApi {
     @POST("Committee/Createcommitte")
     Call<String> Createcommitte(@Field("CommitteeTitle") String CommitteeTitle, @Field("CommitteeHead") int CommitteeHead);
 
+    @GET("Committee/CommitteeGet")
+    Call<String> CommitteeGet(@Query("comid") int comid);
+
+
+//    api/Committee/CommitteeGet?comid={comid}
 }
 
 
