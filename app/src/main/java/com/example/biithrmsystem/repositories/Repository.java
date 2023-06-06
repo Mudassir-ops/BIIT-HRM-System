@@ -14,6 +14,8 @@ import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
 import com.example.biithrmsystem.api.datamodel.JobApplciantResponse;
 import com.example.biithrmsystem.api.datamodel.JobResponse;
+import com.example.biithrmsystem.api.datamodel.LeaveDetailResponse;
+import com.example.biithrmsystem.api.datamodel.LeaveModel;
 import com.example.biithrmsystem.api.datamodel.MemberOfComittieReponse;
 import com.example.biithrmsystem.api.datamodel.PostJobModel;
 import com.example.biithrmsystem.api.datamodel.SignupUserModel;
@@ -36,6 +38,8 @@ public class Repository {
     public MutableLiveData<List<ComitteeBaseResponseModel>> allCOmittereponse = new MutableLiveData<List<ComitteeBaseResponseModel>>();
     public MutableLiveData<List<UserRoleResponse>> userRoleGet = new MutableLiveData<List<UserRoleResponse>>();
     public MutableLiveData<List<MemberOfComittieReponse>> comittieMembers = new MutableLiveData<List<MemberOfComittieReponse>>();
+    public MutableLiveData<List<LeaveDetailResponse>> leaveDetailResponse = new MutableLiveData<List<LeaveDetailResponse>>();
+    public MutableLiveData<List<LeaveModel>> leaveApplications = new MutableLiveData<List<LeaveModel>>();
     public MutableLiveData<String> postJobModelMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<String> postEducationModelMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<String> postExperienceModelMutableLiveData = new MutableLiveData<>();
@@ -398,6 +402,39 @@ public class Repository {
 
             @Override
             public void onFailure(@NonNull Call<List<MemberOfComittieReponse>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+    public void AllLeaveGet() {
+        WebService.getWebApi().AllLeaveGet().enqueue(new Callback<List<LeaveModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<LeaveModel>> call, @NonNull Response<List<LeaveModel>> response) {
+                Log.e("sadsad", "onResponseNew: asdsa" + response.body());
+                leaveApplications.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<LeaveModel>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+
+    public void LeaveWithIDGet(int id) {
+        WebService.getWebApi().LeaveWithIDGet(id).enqueue(new Callback<List<LeaveDetailResponse>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<LeaveDetailResponse>> call, @NonNull Response<List<LeaveDetailResponse>> response) {
+                Log.e("sadsad", "onResponseNew: asdsa" + response.body());
+                leaveDetailResponse.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<LeaveDetailResponse>> call, @NonNull Throwable t) {
                 Log.e("sadsad", "onResponseNew: asdsa" + t);
 
             }

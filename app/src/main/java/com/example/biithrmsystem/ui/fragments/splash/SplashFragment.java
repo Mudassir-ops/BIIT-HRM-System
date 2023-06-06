@@ -42,7 +42,7 @@ public class SplashFragment extends Fragment {
             } else {
 
                 if (SharedPreferences.GetUserType().equals("hr")) {
-                    Navigation.findNavController(view).navigate(R.id.login_to_add_job);
+                    Navigation.findNavController(view).navigate(R.id.login_to_hr_home);
                 } else if (SharedPreferences.GetUserType().equals("guard")) {
                     Navigation.findNavController(view).navigate(R.id.login_to_guard);
                 } else {

@@ -68,11 +68,15 @@ public class LoginFragment extends Fragment {
                                 SharedPreferences.setPassword(userSignInResponse.password);
                                 SharedPreferences.setUserType("guard");
                             } else if (Objects.equals(userSignInResponse.role, "hr")) {
-                                Navigation.findNavController(v).navigate(R.id.login_to_add_job);
+
+
+                                Navigation.findNavController(v).navigate(R.id.login_to_hr_home);
                                 SharedPreferences.setLogInUserId(userSignInResponse.uid);
                                 SharedPreferences.setEmailId(userSignInResponse.email);
                                 SharedPreferences.setUserType("hr");
                                 SharedPreferences.setPassword(userSignInResponse.password);
+
+
                             } else {
                                 Navigation.findNavController(v).navigate(R.id.login_to_home_screen);
                                 SharedPreferences.setLogInUserId(userSignInResponse.uid);

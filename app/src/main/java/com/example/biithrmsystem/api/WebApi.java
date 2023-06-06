@@ -7,6 +7,8 @@ import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
 import com.example.biithrmsystem.api.datamodel.JobApplciantResponse;
 import com.example.biithrmsystem.api.datamodel.JobResponse;
+import com.example.biithrmsystem.api.datamodel.LeaveDetailResponse;
+import com.example.biithrmsystem.api.datamodel.LeaveModel;
 import com.example.biithrmsystem.api.datamodel.MemberOfComittieReponse;
 import com.example.biithrmsystem.api.datamodel.PostJobModel;
 import com.example.biithrmsystem.api.datamodel.SignupUserModel;
@@ -102,11 +104,16 @@ public interface WebApi {
     @POST("Committeemembers/Createcommittemember")
     Call<String> Createcommittemember(@Field("CommitteeId") int CommitteeId, @Field("Uid") int Uid);
 
-
     @GET("Committeemembers/JobappWithCommitteeGet")
     Call<List<MemberOfComittieReponse>> JobappWithCommitteeGet(@Query("comid") int comid);
 
-    //
+    @GET("Leave/AllLeaveGet")
+    Call<List<LeaveModel>> AllLeaveGet();
+
+    @GET("Leave/LeaveWithIDGet")
+    Call<List<LeaveDetailResponse>>LeaveWithIDGet(@Query("leaveappid") int CommitteeId);
+
+
 }
 
 

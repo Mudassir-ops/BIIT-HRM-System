@@ -25,6 +25,10 @@
             android:id="@+id/login_to_guard"
             app:destination="@id/navigation_guard" />
 
+        <action
+            android:id="@+id/login_to_hr_home"
+            app:destination="@id/navigation_hr_home" />
+
     </fragment>
 
     <fragment
@@ -61,6 +65,10 @@
         <action
             android:id="@+id/login_to_guard"
             app:destination="@id/navigation_guard" />
+
+        <action
+            android:id="@+id/login_to_hr_home"
+            app:destination="@id/navigation_hr_home" />
     </fragment>
 
 
@@ -204,6 +212,48 @@
         <action
             android:id="@+id/action_navigation_add_comittie_members_to_navigation_comitte_head"
             app:destination="@id/navigation_comitte_head" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_hr_home"
+        android:name="com.example.biithrmsystem.ui.fragments.JobDetailFragment.HrHomeFragment"
+        android:label="Hr Home"
+        tools:layout="@layout/fragment_hr_home">
+
+        <action
+            android:id="@+id/hr_home_to_add_job"
+            app:destination="@id/navigation_add_job" />
+
+        <action
+            android:id="@+id/hr_home_to_view_job_fragment"
+            app:destination="@id/navigation2_view_job" />
+
+        <action
+            android:id="@+id/hr_home_to_leave_application_fragment"
+            app:destination="@id/navigation_leave_application" />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_leave_application"
+        android:name="com.example.biithrmsystem.ui.fragments.leaveapplications.LeaveApplicationsFragment"
+        android:label="Leave Application"
+        tools:layout="@layout/fragment_leave_applications">
+        <action
+            android:id="@+id/leave_application_to_job_leave_detail_fragment"
+            app:destination="@id/navigation_leave_detail_fragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_leave_detail_fragment"
+        android:name="com.example.biithrmsystem.ui.fragments.leave_detail.LeaveDetailFragment"
+        android:label="Leave Application Detail"
+        tools:layout="@layout/fragment_leave_detail">
+
+
     </fragment>
 
 </navigation>

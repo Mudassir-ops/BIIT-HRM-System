@@ -26,6 +26,13 @@
         <item>Software Engineer </item>
     </string-array>
 
+    <string-array name="leave_array">
+        <item>Pending </item>
+        <item>Approved </item>
+        <item>Rejected </item>
+
+    </string-array>
+
     <string-array name="qualification_array">
         <item>Qualification </item>
         <item>BS Software Engineer </item>
@@ -59,4 +66,5 @@
     <string name="comitte">Comitte</string>
     <string name="hello_blank_fragment">hello_blank_fragment</string>
     <string name="coimittie_members">Coimittie Members:</string>
+    <string name="hr_home">Hr Home</string>
 </resources>
