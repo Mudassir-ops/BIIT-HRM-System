@@ -252,8 +252,6 @@
         android:name="com.example.biithrmsystem.ui.fragments.leave_detail.LeaveDetailFragment"
         android:label="Leave Application Detail"
         tools:layout="@layout/fragment_leave_detail">
-
-
     </fragment>
 
 </navigation>
