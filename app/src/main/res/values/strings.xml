@@ -54,6 +54,15 @@
     </string-array>
 
 
+    <string-array name="leave_type_array">
+        <item><b>Leave Type</b> </item>
+        <item>Pending </item>
+        <item>Approved </item>
+        <item>Rejected </item>
+
+    </string-array>
+
+
     <string name="jobs">Jobs</string>
     <string name="profile">Profile</string>
     <string name="find_your_dream_job">Find Your Dream \nJobs</string>
@@ -67,4 +76,7 @@
     <string name="hello_blank_fragment">hello_blank_fragment</string>
     <string name="coimittie_members">Coimittie Members:</string>
     <string name="hr_home">Hr Home</string>
+    <string name="pending">Pending</string>
+    <string name="approved">Approved</string>
+    <string name="rejected">Rejected</string>
 </resources>

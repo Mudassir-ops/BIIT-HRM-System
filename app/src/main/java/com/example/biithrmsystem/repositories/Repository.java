@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.biithrmsystem.api.WebService;
 import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
+import com.example.biithrmsystem.api.datamodel.AttendenceBaseReponseClass;
 import com.example.biithrmsystem.api.datamodel.AttendenceModel;
 import com.example.biithrmsystem.api.datamodel.ComitteeBaseResponseModel;
 import com.example.biithrmsystem.api.datamodel.Education;
@@ -49,8 +50,13 @@ public class Repository {
     public MutableLiveData<String> deleteComitte = new MutableLiveData<>();
     public MutableLiveData<String> addMemebr = new MutableLiveData<>();
     public MutableLiveData<String> attendeceModel = new MutableLiveData<>();
+    public MutableLiveData<String> leavePost = new MutableLiveData<>();
     public MutableLiveData<List<JobResponse>> allJobsReponseMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<List<AllJobsReponse>> allApplicantJob = new MutableLiveData<>();
+    public MutableLiveData<List<LeaveModel>> leaveLists = new MutableLiveData<>();
+    public MutableLiveData<AttendenceBaseReponseClass> listMutableLiveData = new MutableLiveData<>();
+
+
     public MutableLiveData<List<JobResponse>> jobDetailLiveData = new MutableLiveData<>();
 
     public Repository() {
@@ -440,4 +446,83 @@ public class Repository {
             }
         });
     }
+
+
+    public void LeavePost(int uId, String leaveType, String startDate, String endDate, String reason, String status) {
+        WebService.getWebApi().LeavePost(uId, leaveType, startDate, endDate, reason, status).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                Log.e("sadsad", "onResponseNew: asdsa" + response.body());
+                leavePost.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+    public void PendingLeaveGet(int uId) {
+        WebService.getWebApi().PendingLeaveGet(uId).enqueue(new Callback<List<LeaveModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<LeaveModel>> call, @NonNull Response<List<LeaveModel>> response) {
+                leaveLists.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<LeaveModel>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+    public void RejectedLeaveGet(int uId) {
+        WebService.getWebApi().RejectedLeaveGet(uId).enqueue(new Callback<List<LeaveModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<LeaveModel>> call, @NonNull Response<List<LeaveModel>> response) {
+                leaveLists.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<LeaveModel>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+
+    public void ApprovedLeaveGet(int uId) {
+        WebService.getWebApi().ApprovedLeaveGet(uId).enqueue(new Callback<List<LeaveModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<LeaveModel>> call, @NonNull Response<List<LeaveModel>> response) {
+                leaveLists.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<LeaveModel>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+    public void AlldatewithidAttendanceGet(int uId) {
+        WebService.getWebApi().AlldatewithidAttendanceGet(uId).enqueue(new Callback<AttendenceBaseReponseClass>() {
+            @Override
+            public void onResponse(@NonNull Call<AttendenceBaseReponseClass> call, @NonNull Response<AttendenceBaseReponseClass> response) {
+                listMutableLiveData.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AttendenceBaseReponseClass> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
 }

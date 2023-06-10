@@ -2,8 +2,6 @@ package com.example.biithrmsystem.ui.fragments.login;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,7 +58,6 @@ public class LoginFragment extends Fragment {
                 public void onChanged(UserSignInResponse userSignInResponse) {
                     if (userSignInResponse != null) {
                         if (Objects.requireNonNull(Navigation.findNavController(v).getCurrentDestination()).getId() == R.id.navigation_login) {
-
                             if (Objects.equals(userSignInResponse.role, "guard")) {
                                 Navigation.findNavController(v).navigate(R.id.login_to_guard);
                                 SharedPreferences.setLogInUserId(userSignInResponse.uid);
@@ -68,15 +65,17 @@ public class LoginFragment extends Fragment {
                                 SharedPreferences.setPassword(userSignInResponse.password);
                                 SharedPreferences.setUserType("guard");
                             } else if (Objects.equals(userSignInResponse.role, "hr")) {
-
-
                                 Navigation.findNavController(v).navigate(R.id.login_to_hr_home);
                                 SharedPreferences.setLogInUserId(userSignInResponse.uid);
                                 SharedPreferences.setEmailId(userSignInResponse.email);
                                 SharedPreferences.setUserType("hr");
                                 SharedPreferences.setPassword(userSignInResponse.password);
-
-
+                            } else if (Objects.equals(userSignInResponse.role, "employee")) {
+                                Navigation.findNavController(v).navigate(R.id.login_to_employee_home);
+                                SharedPreferences.setLogInUserId(userSignInResponse.uid);
+                                SharedPreferences.setEmailId(userSignInResponse.email);
+                                SharedPreferences.setUserType("employee");
+                                SharedPreferences.setPassword(userSignInResponse.password);
                             } else {
                                 Navigation.findNavController(v).navigate(R.id.login_to_home_screen);
                                 SharedPreferences.setLogInUserId(userSignInResponse.uid);

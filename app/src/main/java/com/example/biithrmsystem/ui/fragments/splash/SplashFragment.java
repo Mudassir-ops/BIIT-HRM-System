@@ -45,12 +45,12 @@ public class SplashFragment extends Fragment {
                     Navigation.findNavController(view).navigate(R.id.login_to_hr_home);
                 } else if (SharedPreferences.GetUserType().equals("guard")) {
                     Navigation.findNavController(view).navigate(R.id.login_to_guard);
+                } else if (SharedPreferences.GetUserType().equals("employee")) {
+                    Navigation.findNavController(view).navigate(R.id.login_to_employee_home);
                 } else {
                     Navigation.findNavController(view).navigate(R.id.spalsh_to_home);
                 }
-
             }
-
 
         }, 1000);
     }

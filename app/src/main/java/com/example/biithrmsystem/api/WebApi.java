@@ -1,6 +1,7 @@
 package com.example.biithrmsystem.api;
 
 import com.example.biithrmsystem.api.datamodel.AllJobsReponse;
+import com.example.biithrmsystem.api.datamodel.AttendenceBaseReponseClass;
 import com.example.biithrmsystem.api.datamodel.AttendenceModel;
 import com.example.biithrmsystem.api.datamodel.ComitteeBaseResponseModel;
 import com.example.biithrmsystem.api.datamodel.Education;
@@ -61,9 +62,6 @@ public interface WebApi {
     @GET("Job/JobDetailGet")
     Call<List<JobResponse>> JobDetailGet(@Query("jid") int jid);
 
-//    @GET("JobApplication/AllJobApplicationGet")
-//    Call<List<AllJobApplicant>> AllJobApplicationGet();
-
     @FormUrlEncoded
     @POST("JobApplication/JobFileApplicationPost")
     Call<String> JobFileApplicationPost(@Field("Jid") int Jid, @Field("Uid") int Uid, @Field("DocumentPath") String DocumentPath, @Field("name") String name);
@@ -92,7 +90,6 @@ public interface WebApi {
     @GET("User/UserroleGet")
     Call<List<UserRoleResponse>> UserroleGet();
 
-
     @FormUrlEncoded
     @POST("Committee/Createcommitte")
     Call<String> Createcommitte(@Field("CommitteeTitle") String CommitteeTitle, @Field("CommitteeHead") int CommitteeHead);
@@ -111,9 +108,27 @@ public interface WebApi {
     Call<List<LeaveModel>> AllLeaveGet();
 
     @GET("Leave/LeaveWithIDGet")
-    Call<List<LeaveDetailResponse>>LeaveWithIDGet(@Query("leaveappid") int CommitteeId);
+    Call<List<LeaveDetailResponse>> LeaveWithIDGet(@Query("leaveappid") int CommitteeId);
+
+    @FormUrlEncoded
+    @POST("Leave/LeavePost")
+    Call<String> LeavePost(@Field("Uid") int CommitteeId, @Field("leavetype") String leavetype, @Field("startdate") String startdate, @Field("enddate") String enddate, @Field("reason") String reason, @Field("status") String status);
 
 
+    @GET("Leave/PendingLeaveGet")
+    Call<List<LeaveModel>> PendingLeaveGet(@Query("uid") int uid);
+
+    @GET("Leave/RejectedLeaveGet")
+    Call<List<LeaveModel>> RejectedLeaveGet(@Query("uid") int uid);
+
+    @GET("Leave/ApprovedLeaveGet")
+    Call<List<LeaveModel>> ApprovedLeaveGet(@Query("uid") int uid);
+
+
+    @GET("Attendance/AlldatewithidAttendanceGet")
+    Call<AttendenceBaseReponseClass> AlldatewithidAttendanceGet(@Query("uid") int uid);
+
+    // api/Attendance/AlldatewithidAttendanceGet?uid=42
 }
 
 

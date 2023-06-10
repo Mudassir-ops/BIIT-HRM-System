@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.biithrmsystem.R;
+import com.example.biithrmsystem.commons.SharedPreferences;
 import com.example.biithrmsystem.databinding.FragmentHrHomeBinding;
 
 
@@ -27,11 +28,20 @@ public class HrHomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.headerLayout.ivMenu.setVisibility(View.INVISIBLE);
+
+        binding.headerLayout.ivMenu.setVisibility(View.VISIBLE);
+        binding.headerLayout.ivMenu.setImageResource(R.drawable.baseline_logout_24);
         binding.headerLayout.tvHeader.setText("Hr Home");
 
         binding.layoutJobApplication.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.hr_home_to_view_job_fragment));
         binding.layoutLeaveApplication.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.hr_home_to_leave_application_fragment));
+
+
+        binding.headerLayout.ivMenu.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigateUp();
+            SharedPreferences.setLogInUserId(0);
+        });
+
         binding.layoutAttendece.setOnClickListener(v -> {
 
         });

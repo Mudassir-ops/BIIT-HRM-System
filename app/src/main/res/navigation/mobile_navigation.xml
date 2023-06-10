@@ -29,6 +29,10 @@
             android:id="@+id/login_to_hr_home"
             app:destination="@id/navigation_hr_home" />
 
+        <action
+            android:id="@+id/login_to_employee_home"
+            app:destination="@id/navigation_employee_home_fragment" />
+
     </fragment>
 
     <fragment
@@ -69,6 +73,10 @@
         <action
             android:id="@+id/login_to_hr_home"
             app:destination="@id/navigation_hr_home" />
+
+        <action
+            android:id="@+id/login_to_employee_home"
+            app:destination="@id/navigation_employee_home_fragment" />
     </fragment>
 
 
@@ -251,7 +259,46 @@
         android:id="@+id/navigation_leave_detail_fragment"
         android:name="com.example.biithrmsystem.ui.fragments.leave_detail.LeaveDetailFragment"
         android:label="Leave Application Detail"
-        tools:layout="@layout/fragment_leave_detail">
+        tools:layout="@layout/fragment_leave_detail" />
+
+    <fragment
+        android:id="@+id/navigation_employee_home_fragment"
+        android:name="com.example.biithrmsystem.ui.fragments.home_leave.EmployeeHomeFragment"
+        android:label="Employee Home"
+        tools:layout="@layout/fragment_employee_home">
+
+        <action
+            android:id="@+id/navigation_employee_home_to_apply_leave_fragment"
+            app:destination="@id/navigation_apply_leave" />
+
+
+        <action
+            android:id="@+id/navigation_employee_home_to_leave_application"
+            app:destination="@id/navigation_employee_leave_application" />
+        <action
+            android:id="@+id/navigation_employee_home_to_attendence_fragment"
+            app:destination="@id/attendece_frgament" />
+
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_apply_leave"
+        android:name="com.example.biithrmsystem.ui.fragments.appy_for_leave.ApplyForLeaveFragment"
+        android:label="Apply Leave"
+        tools:layout="@layout/fragment_apply_for_leave" />
+
+
+    <fragment
+        android:id="@+id/navigation_employee_leave_application"
+        android:name="com.example.biithrmsystem.ui.fragments.leave_applications.LeaveApplicationsFragment"
+        android:label="Application Leave "
+        tools:layout="@layout/fragment_leave_applications2" />
+
+
+    <fragment
+        android:id="@+id/attendece_frgament"
+        android:name="com.example.biithrmsystem.ui.fragments.attendence_fragment.AttendenceReportFragment"
+        android:label="Employee Home"
+        tools:layout="@layout/fragment_attendence_report2" />
 
 </navigation>

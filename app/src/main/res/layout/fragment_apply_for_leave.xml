@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.appy_for_leave.ApplyForLeaveFragment">
+
+    <include
+        android:id="@+id/header_layout"
+        layout="@layout/header_layout"
+        android:visibility="visible" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_login_edit_textt"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner_leave"
+        app:layout_constraintEnd_toEndOf="@+id/spinner_leave"
+        app:layout_constraintStart_toStartOf="@+id/spinner_leave"
+        app:layout_constraintTop_toTopOf="@+id/spinner_leave" />
+
+    <Spinner
+        android:id="@+id/spinner_leave"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:entries="@array/leave_type_array"
+        android:hint="Leave Type"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_layout" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_board"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:background="@drawable/bg_login_edit_textt"
+        android:hint="Reason"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_leave" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_startDate"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:background="@drawable/bg_login_edit_textt"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:drawableStart="@drawable/baseline_calendar_today_24"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="Board"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:text="Start Date"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_board" />
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:checked="false"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/et_startDate"
+        app:layout_constraintTop_toBottomOf="@+id/et_startDate" />
+
+    <TextView
+        android:id="@+id/tv_working_now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Working Now"
+        android:textSize="@dimen/_14ssp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/checkbox"
+        app:layout_constraintStart_toEndOf="@+id/checkbox"
+        app:layout_constraintTop_toTopOf="@+id/checkbox" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_endDate"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_50sdp"
+
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:background="@drawable/bg_login_edit_textt"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:drawableStart="@drawable/baseline_calendar_today_24"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="Board"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:text="End Date"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintEnd_toEndOf="@id/et_startDate"
+        app:layout_constraintHeight_percent="0.11"
+        app:layout_constraintStart_toStartOf="@+id/et_startDate"
+        app:layout_constraintTop_toBottomOf="@+id/tv_working_now" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_save"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:background="@drawable/button_bg"
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_endDate"
+        app:layout_constraintWidth_percent="0.25" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
