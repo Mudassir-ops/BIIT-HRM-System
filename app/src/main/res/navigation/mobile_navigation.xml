@@ -279,6 +279,10 @@
             android:id="@+id/navigation_employee_home_to_attendence_fragment"
             app:destination="@id/attendece_frgament" />
 
+        <action
+            android:id="@+id/navigation_employee_home_to_comitte_leave"
+            app:destination="@id/comitte_for_employee_fragment" />
+
     </fragment>
 
     <fragment
@@ -292,13 +296,46 @@
         android:id="@+id/navigation_employee_leave_application"
         android:name="com.example.biithrmsystem.ui.fragments.leave_applications.LeaveApplicationsFragment"
         android:label="Application Leave "
-        tools:layout="@layout/fragment_leave_applications2" />
+        tools:layout="@layout/fragment_leave_applications2">
+
+
+    </fragment>
 
 
     <fragment
         android:id="@+id/attendece_frgament"
         android:name="com.example.biithrmsystem.ui.fragments.attendence_fragment.AttendenceReportFragment"
         android:label="Employee Home"
-        tools:layout="@layout/fragment_attendence_report2" />
+        tools:layout="@layout/fragment_attendence_report2">
+
+        <action
+            android:id="@+id/navigation_attende_report_to_detail_attendecne"
+            app:destination="@id/attendec_detail_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/attendec_detail_fragment"
+        android:name="com.example.biithrmsystem.ui.fragments.attendence_report.AttendencedetailFragment"
+        android:label="Attenddence Detail "
+        tools:layout="@layout/fragment_attendencedetail" />
+
+    <fragment
+        android:id="@+id/comitte_for_employee_fragment"
+        android:name="com.example.biithrmsystem.ui.fragments.home_leave.ComitteForEmployeeFragment"
+        android:label="Comitte For Employee"
+        tools:layout="@layout/fragment_comitte_for_employee" >
+
+        <action
+            android:id="@+id/navigation_employee_comitte_to_applicant_detail"
+            app:destination="@id/applicant_detail_fragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/applicant_detail_fragment"
+        android:name="com.example.biithrmsystem.ui.fragments.ApplicantDetail.ApplicatnDetailFragment"
+        android:label="Applicant Detail Fragment"
+        tools:layout="@layout/fragment_applicatn_detail" />
+
 
 </navigation>

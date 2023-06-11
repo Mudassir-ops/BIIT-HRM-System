@@ -1,28 +1,21 @@
 package com.example.biithrmsystem.ui.fragments.viewhrjob;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.biithrmsystem.R;
-import com.example.biithrmsystem.adapter.AllJobsAdapter;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.biithrmsystem.adapter.AllJobsPostedAdapter;
 import com.example.biithrmsystem.api.datamodel.JobResponse;
-import com.example.biithrmsystem.commons.Appconstants;
-import com.example.biithrmsystem.databinding.FragmentAddJobBinding;
 import com.example.biithrmsystem.databinding.FragmentApplicantPostedJobDisplayBinding;
-import com.example.biithrmsystem.databinding.FragmentHomeInnerBinding;
 import com.example.biithrmsystem.repositories.Repository;
 
 import java.util.ArrayList;
@@ -114,7 +107,6 @@ public class ApplicantPostedJobDisplayFragment extends Fragment implements AllJo
             adapter.filterList(filteredlist);
         }
     }
-
 
 
 }

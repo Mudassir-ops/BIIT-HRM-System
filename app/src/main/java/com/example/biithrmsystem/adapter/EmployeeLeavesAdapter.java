@@ -18,8 +18,8 @@ import java.util.List;
 
 public class EmployeeLeavesAdapter extends RecyclerView.Adapter<EmployeeLeavesAdapter.ViewHolder> {
 
-    private List<LeaveModel> mData;
     private final LayoutInflater mInflater;
+    private List<LeaveModel> mData;
     private ItemClickListener mClickListener;
 
     public EmployeeLeavesAdapter(Context context, List<LeaveModel> data) {

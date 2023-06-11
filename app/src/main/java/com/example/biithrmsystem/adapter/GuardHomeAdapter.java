@@ -18,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GuardHomeAdapter extends RecyclerView.Adapter<GuardHomeAdapter.ViewHolder> {
-    public List<Employees> mData;
     private final LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    public List<Employees> mData;
     Context context;
+    private ItemClickListener mClickListener;
 
     public GuardHomeAdapter(Context context, List<Employees> data) {
         this.mInflater = LayoutInflater.from(context);

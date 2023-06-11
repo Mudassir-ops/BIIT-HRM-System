@@ -14,7 +14,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
 import com.bumptech.glide.Glide;
@@ -31,8 +30,8 @@ import java.util.Objects;
 
 
 public class EditPorfileFragment extends Fragment {
-    final Calendar myCalendar = Calendar.getInstance();
     static String imagePath = "";
+    final Calendar myCalendar = Calendar.getInstance();
     Repository repository;
     String[] genderArray = new String[5];
     private FragmentEditPorfileBinding binding;
@@ -86,7 +85,6 @@ public class EditPorfileFragment extends Fragment {
         binding.layoutAddress.name.setText("Address");
 
 
-
         binding.layoutCnic.etEmail.setInputType(InputType.TYPE_CLASS_NUMBER);
         binding.layoutContactNo.etEmail.setInputType(InputType.TYPE_CLASS_NUMBER);
 
@@ -118,8 +116,8 @@ public class EditPorfileFragment extends Fragment {
             signupUserModel.setAddress(Objects.requireNonNull(binding.layoutAddress.etEmail.getText()).toString());
             signupUserModel.setImage(imagePath);
 
-            Log.e("asdsadsd", "onViewCreated: "+imagePath);
-            Log.e("asdsadsd", "onViewCreated: "+signupUserModel.getImage());
+            Log.e("asdsadsd", "onViewCreated: " + imagePath);
+            Log.e("asdsadsd", "onViewCreated: " + signupUserModel.getImage());
             repository.updateUser(
                     SharedPreferences.GetLogInUserId(),
                     signupUserModel.getFname(),

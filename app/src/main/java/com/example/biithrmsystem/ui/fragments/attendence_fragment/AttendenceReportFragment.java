@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.biithrmsystem.R;
 import com.example.biithrmsystem.adapter.AttendenceReportAdapter;
 import com.example.biithrmsystem.api.datamodel.AttendanceRecord;
 import com.example.biithrmsystem.commons.SharedPreferences;
@@ -46,11 +48,11 @@ public class AttendenceReportFragment extends Fragment implements AttendenceRepo
         super.onViewCreated(view, savedInstanceState);
         repository.listMutableLiveData.observe(getViewLifecycleOwner(), leaveModels -> {
 
-           if(leaveModels!=null){
-               arrayList.clear();
-               arrayList.addAll(leaveModels.attendanceRecords);
-               initRecyclerView(arrayList);
-           }
+            if (leaveModels != null) {
+                arrayList.clear();
+                arrayList.addAll(leaveModels.attendanceRecords);
+                initRecyclerView(arrayList);
+            }
 
         });
 
@@ -64,9 +66,11 @@ public class AttendenceReportFragment extends Fragment implements AttendenceRepo
         binding.rvDataList.setAdapter(adapter);
     }
 
-
     @Override
-    public void onItemClick(View view, int position) {
-        Log.e("TAG", "onItemClick: " + position);
+    public void onItemClick(View view, AttendanceRecord attendanceRecord) {
+        Log.e("TAG", "onItemClick: " + attendanceRecord);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("RECORD", attendanceRecord);
+        Navigation.findNavController(view).navigate(R.id.navigation_attende_report_to_detail_attendecne, bundle);
     }
 }

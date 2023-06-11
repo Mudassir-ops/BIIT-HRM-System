@@ -1,7 +1,6 @@
 package com.example.biithrmsystem.ui.fragments.home;
 
 import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,13 +21,9 @@ import com.example.biithrmsystem.commons.SharedPreferences;
 import com.example.biithrmsystem.databinding.FragmentHomeBinding;
 import com.example.biithrmsystem.repositories.Repository;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 public class HomeFragment extends Fragment {
-
 
 
     private FragmentHomeBinding binding;
@@ -51,7 +46,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
 
         binding.headerLayout.tvHeader.setText("Welcome");

@@ -1,4 +1,4 @@
-package com.example.biithrmsystem.ui.fragments.commite;
+package com.example.biithrmsystem.ui.fragments.home_leave;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,26 +14,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.biithrmsystem.R;
 import com.example.biithrmsystem.adapter.AllComittesdAdapter;
-import com.example.biithrmsystem.api.datamodel.ComitteReponseParcableModel;
 import com.example.biithrmsystem.api.datamodel.ComitteeBaseResponseModel;
-import com.example.biithrmsystem.commons.Function;
-import com.example.biithrmsystem.databinding.FragmentComitteHomeBinding;
+import com.example.biithrmsystem.commons.SharedPreferences;
+import com.example.biithrmsystem.databinding.FragmentComitteForEmployeeBinding;
 import com.example.biithrmsystem.repositories.Repository;
 
 import java.util.List;
 
 
-public class ComitteHomeFragment extends Fragment implements AllComittesdAdapter.ItemClickListener {
+public class ComitteForEmployeeFragment extends Fragment implements AllComittesdAdapter.ItemClickListener {
+
     AllComittesdAdapter adapter;
-    private FragmentComitteHomeBinding binding;
+    private FragmentComitteForEmployeeBinding binding;
     private Repository repository;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentComitteHomeBinding.inflate(inflater, container, false);
+        binding = FragmentComitteForEmployeeBinding.inflate(inflater, container, false);
         repository = new Repository();
-
-        repository.AllCommitteeGet();
+        repository.CommitteeWithMemberGet(SharedPreferences.GetLogInUserId());
         return binding.getRoot();
     }
 
@@ -41,25 +40,14 @@ public class ComitteHomeFragment extends Fragment implements AllComittesdAdapter
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        repository.allCOmittereponse.observe(getViewLifecycleOwner(), this::initRecyclerView);
-
-        repository.deleteComitte.observe(getViewLifecycleOwner(), s -> {
-            Function.showToast("" + s, requireContext());
-            repository.AllCommitteeGet();
-        });
-
-        binding.fab.setOnClickListener(v -> {
-            Bundle bundle = new Bundle();
-            bundle.putInt("COmiite_ID", 0);
-            Navigation.findNavController(v).navigate(R.id.comitte_home_to_comitte_head, bundle);
-        });
+        repository.comitteeBaseResponseModelMutableLiveData.observe(getViewLifecycleOwner(), this::initRecyclerView);
 
 
     }
 
     void initRecyclerView(List<ComitteeBaseResponseModel> jobResponseArrayList) {
         binding.allJobRv.setLayoutManager(new LinearLayoutManager(requireContext()));
-        adapter = new AllComittesdAdapter(requireContext(), jobResponseArrayList, false);
+        adapter = new AllComittesdAdapter(requireContext(), jobResponseArrayList, true);
         adapter.setClickListener(this);
         binding.allJobRv.setAdapter(adapter);
     }
@@ -67,9 +55,8 @@ public class ComitteHomeFragment extends Fragment implements AllComittesdAdapter
     @Override
     public void onItemClick(View view, ComitteeBaseResponseModel comitteeBaseResponseModel) {
         Bundle bundle = new Bundle();
-        ComitteReponseParcableModel comitteReponseParcableModel = new ComitteReponseParcableModel(comitteeBaseResponseModel.committeeId, comitteeBaseResponseModel.committeeTitle, comitteeBaseResponseModel.committeeHead);
-        bundle.putParcelable("MODEL", comitteReponseParcableModel);
-        Navigation.findNavController(view).navigate(R.id.action_navigation_comitte_home_to_navigation_add_comittie_members, bundle);
+        bundle.putParcelable("MODEL", comitteeBaseResponseModel);
+        Navigation.findNavController(view).navigate(R.id.navigation_employee_comitte_to_applicant_detail, bundle);
         Log.e("mahzaib_click", "onItemClick: " + comitteeBaseResponseModel);
     }
 
@@ -77,4 +64,5 @@ public class ComitteHomeFragment extends Fragment implements AllComittesdAdapter
     public void onDeleteClick(View view, int position) {
         repository.deleteCommittee(position);
     }
+
 }

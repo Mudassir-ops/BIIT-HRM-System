@@ -23,10 +23,10 @@ import java.util.ArrayList;
 
 public class AddComittieMembersFragment extends Fragment implements ComitteAddedMembersAdapter.ItemClickListener {
 
+    ComitteAddedMembersAdapter adapter;
     private ComitteReponseParcableModel comitteReponseParcableModel;
     private FragmentAddComittieMembersBinding binding;
     private Repository repository = null;
-    ComitteAddedMembersAdapter adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

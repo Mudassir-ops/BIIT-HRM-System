@@ -14,6 +14,7 @@ import com.example.biithrmsystem.api.datamodel.ComitteeBaseResponseModel;
 import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
 import com.example.biithrmsystem.api.datamodel.JobApplciantResponse;
+import com.example.biithrmsystem.api.datamodel.JobApplicantHrSideReponse;
 import com.example.biithrmsystem.api.datamodel.JobResponse;
 import com.example.biithrmsystem.api.datamodel.LeaveDetailResponse;
 import com.example.biithrmsystem.api.datamodel.LeaveModel;
@@ -55,6 +56,11 @@ public class Repository {
     public MutableLiveData<List<AllJobsReponse>> allApplicantJob = new MutableLiveData<>();
     public MutableLiveData<List<LeaveModel>> leaveLists = new MutableLiveData<>();
     public MutableLiveData<AttendenceBaseReponseClass> listMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<ComitteeBaseResponseModel>> comitteeBaseResponseModelMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<JobApplicantHrSideReponse>> jobReponseHrSide = new MutableLiveData<>();
+    public MutableLiveData<List<Education>> educationList = new MutableLiveData<>();
+    public MutableLiveData<List<Experience>> experienceGet = new MutableLiveData<>();
+    public MutableLiveData<String> REMARKS = new MutableLiveData<>();
 
 
     public MutableLiveData<List<JobResponse>> jobDetailLiveData = new MutableLiveData<>();
@@ -138,7 +144,6 @@ public class Repository {
             public void onResponse(@NonNull Call<List<UserSignInResponse>> call, @NonNull Response<List<UserSignInResponse>> response) {
                 Log.e("sadsad", "onResponse: asdsa" + response);
                 getUser.postValue(response.body());
-
             }
 
             @Override
@@ -525,4 +530,80 @@ public class Repository {
         });
     }
 
+    public void CommitteeWithMemberGet(int uId) {
+        WebService.getWebApi().CommitteeWithMemberGet(uId).enqueue(new Callback<List<ComitteeBaseResponseModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<ComitteeBaseResponseModel>> call, @NonNull Response<List<ComitteeBaseResponseModel>> response) {
+                comitteeBaseResponseModelMutableLiveData.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<ComitteeBaseResponseModel>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+    public void EducationGet(int uId) {
+        WebService.getWebApi().EducationGet(uId).enqueue(new Callback<List<Education>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Education>> call, @NonNull Response<List<Education>> response) {
+                educationList.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Education>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+    public void ExperienceGet(int uId) {
+        WebService.getWebApi().ExperienceGet(uId).enqueue(new Callback<List<Experience>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Experience>> call, @NonNull Response<List<Experience>> response) {
+                experienceGet.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Experience>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+
+    public void RemarkPost(int memberId, int jobApplicationId, int remakrs) {
+        WebService.getWebApi().RemarkPost(memberId, jobApplicationId, remakrs).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                REMARKS.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+
+    public void JobApplicationHrSideGet(int memberId) {
+        WebService.getWebApi().JobApplicationHrSideGet(memberId).enqueue(new Callback<List<JobApplicantHrSideReponse>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<JobApplicantHrSideReponse>> call, @NonNull Response<List<JobApplicantHrSideReponse>> response) {
+                jobReponseHrSide.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<JobApplicantHrSideReponse>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
 }

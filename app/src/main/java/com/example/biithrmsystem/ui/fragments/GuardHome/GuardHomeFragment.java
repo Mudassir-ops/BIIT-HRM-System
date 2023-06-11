@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,9 +25,9 @@ import java.util.Objects;
 
 
 public class GuardHomeFragment extends Fragment implements GuardHomeAdapter.ItemClickListener {
+    GuardHomeAdapter adapter;
     private ArrayList<Employees> listOfAllJobs;
     private ArrayList<Employees> updatedList;
-    GuardHomeAdapter adapter;
     private Repository repository;
     private FragmentGuardHomeBinding binding;
 

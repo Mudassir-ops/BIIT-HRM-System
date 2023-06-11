@@ -2,16 +2,19 @@ package com.example.biithrmsystem.adapter;
 
 public interface test {
     void sum();
+
     void add();
 
 }
-abstract class Naju{
-    abstract void  sum();
-   abstract int sum1();
 
-   void sss(){
+abstract class Naju {
+    abstract void sum();
 
-   }
+    abstract int sum1();
+
+    void sss() {
+
+    }
 }
 
 

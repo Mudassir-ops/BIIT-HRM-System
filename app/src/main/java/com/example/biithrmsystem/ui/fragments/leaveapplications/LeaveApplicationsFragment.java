@@ -26,10 +26,10 @@ import java.util.Objects;
 
 public class LeaveApplicationsFragment extends Fragment implements AllLeaveApplicationsAdapter.ItemClickListener {
 
-    private FragmentLeaveApplicationsBinding binding;
-    private Repository repository;
     AllLeaveApplicationsAdapter adapter;
     String[] leaveStatusType = new String[3];
+    private FragmentLeaveApplicationsBinding binding;
+    private Repository repository;
     private String leaveStatus = "";
     private ArrayList<LeaveModel> leaveModelArrayList;
     private ArrayList<LeaveModel> filterList;

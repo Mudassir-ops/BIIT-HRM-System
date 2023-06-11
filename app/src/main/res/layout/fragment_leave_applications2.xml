@@ -65,13 +65,13 @@
         android:id="@+id/rv_dataList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:listitem=""
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:layout_marginVertical="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_rejected" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_rejected"
+        tools:listitem="" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

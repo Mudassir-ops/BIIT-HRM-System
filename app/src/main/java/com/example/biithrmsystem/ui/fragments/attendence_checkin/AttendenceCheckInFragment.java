@@ -28,11 +28,10 @@ import java.util.Objects;
 
 public class AttendenceCheckInFragment extends Fragment {
 
+    final Calendar myCalendar = Calendar.getInstance();
     private FragmentAttendenceCheckInBinding binding;
     private Repository repository;
     private ArrayList<JobResponse> listOfAllJobResponses;
-
-    final Calendar myCalendar = Calendar.getInstance();
     private int srcImage;
     private String title;
     private String mobileNO;

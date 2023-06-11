@@ -27,13 +27,12 @@ import java.util.Objects;
 
 public class ApplyForLeaveFragment extends Fragment {
 
-    private FragmentApplyForLeaveBinding binding;
-    private Repository repository;
-    String[] leaveTypeArray = new String[5];
-    String leaveType = "";
     final Calendar myCalendar1 = Calendar.getInstance();
     final Calendar myCalendar2 = Calendar.getInstance();
-
+    String[] leaveTypeArray = new String[5];
+    String leaveType = "";
+    private FragmentApplyForLeaveBinding binding;
+    private Repository repository;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

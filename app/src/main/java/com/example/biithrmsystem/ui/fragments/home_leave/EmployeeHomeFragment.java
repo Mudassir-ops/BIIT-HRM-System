@@ -7,10 +7,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.biithrmsystem.R;
+import com.example.biithrmsystem.commons.SharedPreferences;
 import com.example.biithrmsystem.databinding.FragmentEmployeeHomeBinding;
 import com.example.biithrmsystem.repositories.Repository;
 
@@ -36,6 +38,10 @@ public class EmployeeHomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        binding.headerLayout.tvHeader.setText("Employee Home");
+        binding.headerLayout.ivMenu.setOnClickListener(v -> binding.drawerLayout.openDrawer(GravityCompat.START));
+
+
         binding.cardviewPerson.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.navigation_employee_home_to_apply_leave_fragment);
         });
@@ -45,6 +51,15 @@ public class EmployeeHomeFragment extends Fragment {
         binding.cardviewExperience.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.navigation_employee_home_to_attendence_fragment);
         });
+
+
+        binding.drawerLayoutInner.tvLogOut.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigateUp();
+            SharedPreferences.setLogInUserId(0);
+        });
+
+        binding.drawerLayoutInner.tvPostedJob.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.navigation_employee_home_to_comitte_leave));
+
 
     }
 

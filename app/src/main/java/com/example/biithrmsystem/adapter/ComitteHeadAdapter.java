@@ -18,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComitteHeadAdapter extends RecyclerView.Adapter<ComitteHeadAdapter.ViewHolder> {
-    public List<UserRoleResponse> mData;
     private final LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    public List<UserRoleResponse> mData;
     Context context;
+    private ItemClickListener mClickListener;
 
     public ComitteHeadAdapter(Context context, List<UserRoleResponse> data) {
         this.mInflater = LayoutInflater.from(context);

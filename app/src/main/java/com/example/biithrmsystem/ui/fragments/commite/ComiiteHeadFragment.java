@@ -23,11 +23,10 @@ import java.util.ArrayList;
 
 
 public class ComiiteHeadFragment extends Fragment implements ComitteHeadAdapter.ItemClickListener {
+    ComitteHeadAdapter adapter;
     private FragmentComitteHeadBinding binding;
     private Repository repository;
     private ArrayList<UserRoleResponse> updatedList;
-    ComitteHeadAdapter adapter;
-
     private int COmiitieId = 0;
 
     @Override

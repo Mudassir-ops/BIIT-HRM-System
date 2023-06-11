@@ -18,8 +18,8 @@ import java.util.List;
 
 public class AttendenceReportAdapter extends RecyclerView.Adapter<AttendenceReportAdapter.ViewHolder> {
 
-    private List<AttendanceRecord> mData;
     private final LayoutInflater mInflater;
+    private List<AttendanceRecord> mData;
     private ItemClickListener mClickListener;
 
     public AttendenceReportAdapter(Context context, List<AttendanceRecord> data) {
@@ -50,6 +50,8 @@ public class AttendenceReportAdapter extends RecyclerView.Adapter<AttendenceRepo
             holder.salary.setText(mData.get(position).records.get(0).status);
         }
 
+        holder.itemView.setOnClickListener(v -> mClickListener.onItemClick(v, mData.get(holder.getAdapterPosition())));
+
     }
 
     @Override
@@ -62,7 +64,7 @@ public class AttendenceReportAdapter extends RecyclerView.Adapter<AttendenceRepo
     }
 
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view, AttendanceRecord position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -79,7 +81,7 @@ public class AttendenceReportAdapter extends RecyclerView.Adapter<AttendenceRepo
         @Override
         public void onClick(View view) {
             if (mClickListener != null)
-                mClickListener.onItemClick(view, Integer.parseInt(mData.get(getAdapterPosition()).date));
+                mClickListener.onItemClick(view, mData.get(getAdapterPosition()));
         }
     }
 }

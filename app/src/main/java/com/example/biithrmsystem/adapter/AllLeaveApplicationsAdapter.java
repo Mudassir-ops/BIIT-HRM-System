@@ -19,8 +19,8 @@ import java.util.List;
 
 public class AllLeaveApplicationsAdapter extends RecyclerView.Adapter<AllLeaveApplicationsAdapter.ViewHolder> {
 
-    private List<LeaveModel> mData;
     private final LayoutInflater mInflater;
+    private List<LeaveModel> mData;
     private ItemClickListener mClickListener;
 
     public AllLeaveApplicationsAdapter(Context context, List<LeaveModel> data) {

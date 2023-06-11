@@ -54,6 +54,17 @@
     </string-array>
 
 
+    <string-array name="rate_us_array">
+        <item><b>Remark Applicant</b> </item>
+        <item>0 </item>
+        <item>1 </item>
+        <item>2 </item>
+        <item>3 </item>
+        <item>4 </item>
+        <item>5 </item>
+    </string-array>
+
+
     <string-array name="leave_type_array">
         <item><b>Leave Type</b> </item>
         <item>Pending </item>

@@ -51,7 +51,7 @@ public class ApplicantApplicationFragment extends Fragment implements AllApllica
         repository.allJobApplicantLivedata.observe(getViewLifecycleOwner(), jobApplciantResponses -> {
             Log.e("All_JOb_Response", "onViewCreated: " + jobApplciantResponses);
 
-            if( jobApplciantResponses!=null){
+            if (jobApplciantResponses != null) {
                 initRecyclerView(jobApplciantResponses);
             }
         });

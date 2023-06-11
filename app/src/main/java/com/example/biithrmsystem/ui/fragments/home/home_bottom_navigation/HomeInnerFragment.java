@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -106,7 +105,7 @@ public class HomeInnerFragment extends Fragment implements AllJobsAdapter.ItemCl
             }
         }
         if (filteredlist.isEmpty()) {
-     //--       Toast.makeText(requireContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
+            //--       Toast.makeText(requireContext(), "No Data Found..", Toast.LENGTH_SHORT).show();
         } else {
             adapter.filterList(filteredlist);
         }

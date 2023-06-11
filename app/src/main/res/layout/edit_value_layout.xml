@@ -42,7 +42,4 @@
         app:layout_constraintWidth_percent="0.15" />
 
 
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

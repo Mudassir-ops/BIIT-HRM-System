@@ -17,12 +17,12 @@ public class Employees {
         return title;
     }
 
-    public int getSrcImg() {
-        return srcImg;
-    }
-
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getSrcImg() {
+        return srcImg;
     }
 
     public void setSrcImg(int srcImg) {

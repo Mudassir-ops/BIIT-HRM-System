@@ -18,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComitteAddedMembersAdapter extends RecyclerView.Adapter<ComitteAddedMembersAdapter.ViewHolder> {
-    public List<MemberOfComittieReponse> mData;
     private final LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    public List<MemberOfComittieReponse> mData;
     Context context;
+    private ItemClickListener mClickListener;
 
     public ComitteAddedMembersAdapter(Context context, List<MemberOfComittieReponse> data) {
         this.mInflater = LayoutInflater.from(context);

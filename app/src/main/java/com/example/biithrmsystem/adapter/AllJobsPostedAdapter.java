@@ -19,8 +19,8 @@ import java.util.List;
 
 public class AllJobsPostedAdapter extends RecyclerView.Adapter<AllJobsPostedAdapter.ViewHolder> {
 
-    private List<JobResponse> mData;
     private final LayoutInflater mInflater;
+    private List<JobResponse> mData;
     private ItemClickListener mClickListener;
 
     public AllJobsPostedAdapter(Context context, List<JobResponse> data) {
@@ -53,7 +53,7 @@ public class AllJobsPostedAdapter extends RecyclerView.Adapter<AllJobsPostedAdap
         if (mData.get(position).location != null) {
             holder.location.setText(mData.get(position).location);
         }
-        holder.noOfVaccancyies.setText(""+ mData.get(position).noofvacancie);
+        holder.noOfVaccancyies.setText("" + mData.get(position).noofvacancie);
 
         holder.iv_next.setVisibility(View.GONE);
 

@@ -5,10 +5,20 @@ import android.os.Parcelable;
 
 public class ComitteReponseParcableModel implements Parcelable {
 
+    public static final Creator<ComitteReponseParcableModel> CREATOR = new Creator<ComitteReponseParcableModel>() {
+        @Override
+        public ComitteReponseParcableModel createFromParcel(Parcel in) {
+            return new ComitteReponseParcableModel(in);
+        }
+
+        @Override
+        public ComitteReponseParcableModel[] newArray(int size) {
+            return new ComitteReponseParcableModel[size];
+        }
+    };
     public int committeeId;
     public String committeeTitle;
     public int committeeHead;
-
 
     public ComitteReponseParcableModel() {
     }
@@ -36,18 +46,6 @@ public class ComitteReponseParcableModel implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<ComitteReponseParcableModel> CREATOR = new Creator<ComitteReponseParcableModel>() {
-        @Override
-        public ComitteReponseParcableModel createFromParcel(Parcel in) {
-            return new ComitteReponseParcableModel(in);
-        }
-
-        @Override
-        public ComitteReponseParcableModel[] newArray(int size) {
-            return new ComitteReponseParcableModel[size];
-        }
-    };
 
     public int getCommitteeId() {
         return committeeId;

@@ -20,8 +20,8 @@ import java.util.List;
 public class AllApllicationAdapter extends RecyclerView.Adapter<AllApllicationAdapter.ViewHolder> {
 
 
-    private List<JobApplciantResponse> mData;
     private final LayoutInflater mInflater;
+    private List<JobApplciantResponse> mData;
     private ItemClickListener mClickListener;
 
     public AllApllicationAdapter(Context context, List<JobApplciantResponse> data) {

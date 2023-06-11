@@ -7,6 +7,7 @@ import com.example.biithrmsystem.api.datamodel.ComitteeBaseResponseModel;
 import com.example.biithrmsystem.api.datamodel.Education;
 import com.example.biithrmsystem.api.datamodel.Experience;
 import com.example.biithrmsystem.api.datamodel.JobApplciantResponse;
+import com.example.biithrmsystem.api.datamodel.JobApplicantHrSideReponse;
 import com.example.biithrmsystem.api.datamodel.JobResponse;
 import com.example.biithrmsystem.api.datamodel.LeaveDetailResponse;
 import com.example.biithrmsystem.api.datamodel.LeaveModel;
@@ -128,7 +129,21 @@ public interface WebApi {
     @GET("Attendance/AlldatewithidAttendanceGet")
     Call<AttendenceBaseReponseClass> AlldatewithidAttendanceGet(@Query("uid") int uid);
 
-    // api/Attendance/AlldatewithidAttendanceGet?uid=42
+    @GET("Committeemembers/CommitteeWithMemberGet")
+    Call<List<ComitteeBaseResponseModel>> CommitteeWithMemberGet(@Query("uid") int uid);
+
+    @GET("Education/EducationGet")
+    Call<List<Education>> EducationGet(@Query("uid") int uid);
+
+    @GET("Expereince/ExperienceGet")
+    Call<List<Experience>> ExperienceGet(@Query("uid") int uid);
+
+    @GET("Remark/RemarkPost")
+    Call<String> RemarkPost(@Field("CommitteeImemberId") int CommitteeImemberId, @Field("JobApplicationID") int JobApplicationID, @Field("Remarks") int Remarks);
+
+    @GET("JobApplication/JobApplicationHrSideGet")
+    Call<List<JobApplicantHrSideReponse>> JobApplicationHrSideGet(@Query("applicationid") int applicationid);
+
 }
 
 

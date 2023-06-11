@@ -19,13 +19,16 @@ import java.util.List;
 
 public class AllComittesdAdapter extends RecyclerView.Adapter<AllComittesdAdapter.ViewHolder> {
 
-    private List<ComitteeBaseResponseModel> mData;
     private final LayoutInflater mInflater;
+    private List<ComitteeBaseResponseModel> mData;
     private ItemClickListener mClickListener;
+    private Boolean fromEmployee = false;
 
-    public AllComittesdAdapter(Context context, List<ComitteeBaseResponseModel> data) {
+
+    public AllComittesdAdapter(Context context, List<ComitteeBaseResponseModel> data, boolean b) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.fromEmployee = b;
     }
 
     // method for filtering our recyclerview items.
@@ -47,13 +50,14 @@ public class AllComittesdAdapter extends RecyclerView.Adapter<AllComittesdAdapte
         if (mData.get(position).committeeTitle != null) {
             holder.tv_value.setText(mData.get(position).committeeTitle);
         }
-        holder.iv_delete.setOnClickListener(v -> {
-            this.mClickListener.onDeleteClick(v, mData.get(position).committeeId);
-        });
 
         holder.itemView.setOnClickListener(v -> {
-            this.mClickListener.onItemClick(v,mData.get(position));
+            this.mClickListener.onItemClick(v, mData.get(position));
         });
+
+        if (fromEmployee) {
+            holder.iv_delete.setVisibility(View.GONE);
+        }
 
     }
 
@@ -71,7 +75,7 @@ public class AllComittesdAdapter extends RecyclerView.Adapter<AllComittesdAdapte
     }
 
     public interface ItemClickListener {
-        void onItemClick(View view,  ComitteeBaseResponseModel comitteeBaseResponseModel);
+        void onItemClick(View view, ComitteeBaseResponseModel comitteeBaseResponseModel);
 
         void onDeleteClick(View view, int position);
     }
