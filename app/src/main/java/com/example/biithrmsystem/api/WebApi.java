@@ -139,7 +139,7 @@ public interface WebApi {
     Call<List<Experience>> ExperienceGet(@Query("uid") int uid);
 
     @FormUrlEncoded
-    @GET("Remark/RemarkPost")
+    @POST("Remark/RemarkPost")
     Call<String> RemarkPost(@Field("CommitteeImemberId") int CommitteeImemberId, @Field("JobApplicationID") int JobApplicationID, @Field("Remarks") int Remarks);
 
     @GET("JobApplication/JobApplicationHrSideGet")
