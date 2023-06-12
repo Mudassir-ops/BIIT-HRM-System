@@ -50,7 +50,7 @@ public class EditPorfileFragment extends Fragment {
         ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
                 uri -> {
                     imagePath = uri.toString();
-                    Log.e("mudassir", "onViewCreated: $" + uri);
+                    Log.e("mahzaib", "onViewCreated: $" + uri);
                     Glide.with(requireContext()).load(uri).into(binding.profilePick);
                 });
 

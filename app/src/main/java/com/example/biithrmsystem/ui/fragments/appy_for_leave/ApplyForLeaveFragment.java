@@ -84,7 +84,7 @@ public class ApplyForLeaveFragment extends Fragment {
         binding.btnSave.setOnClickListener(v -> repository.LeavePost(SharedPreferences.GetLogInUserId(), leaveType, Objects.requireNonNull(binding.etStartDate.getText()).toString(), Objects.requireNonNull(binding.etEndDate.getText()).toString(), Objects.requireNonNull(binding.etBoard.getText()).toString(), leaveType));
         repository.leavePost.observe(getViewLifecycleOwner(), s -> {
             Toast.makeText(requireContext(), "" + s, Toast.LENGTH_LONG).show();
-            Log.e("mudassir", "onChanged: " + s);
+            Log.e("mahzaib", "onChanged: " + s);
             Navigation.findNavController(view).navigateUp();
         });
     }

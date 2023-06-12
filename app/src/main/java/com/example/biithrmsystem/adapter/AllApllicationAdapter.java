@@ -45,7 +45,7 @@ public class AllApllicationAdapter extends RecyclerView.Adapter<AllApllicationAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Log.e("mudassir", "onBindViewHolder: " + mData.get(position).name);
+        Log.e("mahzaib", "onBindViewHolder: " + mData.get(position).name);
         if (mData.get(position).name != null) {
             holder.title.setText(mData.get(position).name);
         } else {

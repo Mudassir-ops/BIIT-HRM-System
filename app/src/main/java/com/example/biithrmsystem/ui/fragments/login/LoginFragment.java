@@ -83,7 +83,7 @@ public class LoginFragment extends Fragment {
                                 SharedPreferences.setPassword(userSignInResponse.password);
                                 SharedPreferences.setUserType("else");
                             }
-                            Log.e("mudassir", "onChanged: " + userSignInResponse.role);
+                            Log.e("mahzaib", "onChanged: " + userSignInResponse.role);
 
                         }
                     } else {

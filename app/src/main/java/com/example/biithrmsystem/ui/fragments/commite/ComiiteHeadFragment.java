@@ -58,7 +58,7 @@ public class ComiiteHeadFragment extends Fragment implements ComitteHeadAdapter.
         repository.userRoleGet.observe(getViewLifecycleOwner(), userRoleResponses -> {
             updatedList.addAll(userRoleResponses);
             initRecyclerView(updatedList);
-            Log.e("mudassir_satti", "onChanged: " + userRoleResponses.get(0).image);
+            Log.e("mahzaib_satti", "onChanged: " + userRoleResponses.get(0).image);
 
         });
         binding.jobSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

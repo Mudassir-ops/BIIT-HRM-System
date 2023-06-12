@@ -49,7 +49,7 @@ public class ApplicantPostedJobDisplayFragment extends Fragment implements AllJo
         super.onViewCreated(view, savedInstanceState);
 
         repository.getAllJobsReponseMutableLiveData().observe(getViewLifecycleOwner(), allJobsReponse -> {
-            Log.e("mudassir", "onViewCreated: " + allJobsReponse);
+            Log.e("mahzaib", "onViewCreated: " + allJobsReponse);
             if (allJobsReponse != null) {
                 listOfAllJobResponses.clear();
                 listOfAllJobResponses.addAll(allJobsReponse);
