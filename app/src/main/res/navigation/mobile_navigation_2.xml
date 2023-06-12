@@ -11,26 +11,11 @@
         android:name="com.example.biithrmsystem.ui.fragments.home.home_bottom_navigation.HomeInnerFragment"
         android:label="HomeInner"
         tools:layout="@layout/fragment_home_inner">
-
         <action
             android:id="@+id/home_inner_to_job_detail"
             app:destination="@+id/navigation2_jobDetail" />
 
     </fragment>
-
-
-    <fragment
-        android:id="@+id/navigation2_jobs"
-        android:name="com.example.biithrmsystem.ui.fragments.home.home_bottom_navigation.JobsInnerFragment"
-        android:label="JobsInner"
-        tools:layout="@layout/fragment_jobs_inner" />
-
-    <fragment
-        android:id="@+id/navigation2_profile"
-        android:name="com.example.biithrmsystem.ui.fragments.home.home_bottom_navigation.ProfileInnerFragment"
-        android:label="ProfileInner"
-        tools:layout="@layout/fragment_profile_inner" />
-
 
     <fragment
         android:id="@+id/navigation2_jobDetail"

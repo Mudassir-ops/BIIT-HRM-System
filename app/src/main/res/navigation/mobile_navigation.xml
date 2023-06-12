@@ -323,7 +323,7 @@
         android:id="@+id/comitte_for_employee_fragment"
         android:name="com.example.biithrmsystem.ui.fragments.home_leave.ComitteForEmployeeFragment"
         android:label="Comitte For Employee"
-        tools:layout="@layout/fragment_comitte_for_employee" >
+        tools:layout="@layout/fragment_comitte_for_employee">
 
         <action
             android:id="@+id/navigation_employee_comitte_to_applicant_detail"

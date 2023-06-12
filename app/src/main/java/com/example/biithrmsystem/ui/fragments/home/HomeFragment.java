@@ -25,9 +25,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-
     private FragmentHomeBinding binding;
-
     private Repository repository;
 
     @Override

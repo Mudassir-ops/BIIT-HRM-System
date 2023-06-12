@@ -48,6 +48,7 @@ public class Repository {
     public MutableLiveData<String> signupLiveData = new MutableLiveData<>();
     public MutableLiveData<String> updateUser = new MutableLiveData<>();
     public MutableLiveData<String> appyJob = new MutableLiveData<>();
+    public MutableLiveData<String> automationCv = new MutableLiveData<>();
     public MutableLiveData<String> deleteComitte = new MutableLiveData<>();
     public MutableLiveData<String> addMemebr = new MutableLiveData<>();
     public MutableLiveData<String> attendeceModel = new MutableLiveData<>();
@@ -602,6 +603,43 @@ public class Repository {
             @Override
             public void onFailure(@NonNull Call<List<JobApplicantHrSideReponse>> call, @NonNull Throwable t) {
                 Log.e("sadsad", "onResponseNew: asdsa" + t);
+
+            }
+        });
+    }
+
+    public void WithCheckfilterJobGet(int uId) {
+        WebService.getWebApi().WithCheckfilterJobGet(uId).enqueue(new Callback<List<JobResponse>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<JobResponse>> call, @NonNull Response<List<JobResponse>> response) {
+                if (response.body() != null && !response.body().isEmpty()) {
+                    Log.e("sadsad", "onResponse: asdsa" + response.body().get(0).title);
+                    allJobsReponseMutableLiveData.postValue(response.body());
+                } else {
+                    allJobsReponseMutableLiveData.postValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<JobResponse>> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponse: asdsa" + t);
+
+            }
+        });
+    }
+
+    ///---method for automatic cv
+    public void WithUniversityNewNewJobFileApplicationWithFilterPost2(int jId, int Uid) {
+        WebService.getWebApi().WithUniversityNewNewJobFileApplicationWithFilterPost2(jId, Uid).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                Log.e("sadsad", "onResponse: asdsa" + response.body());
+                automationCv.postValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Log.e("sadsad", "onResponse: asdsa" + t);
 
             }
         });

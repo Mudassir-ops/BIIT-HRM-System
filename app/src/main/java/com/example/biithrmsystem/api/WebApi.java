@@ -145,6 +145,14 @@ public interface WebApi {
     @GET("JobApplication/JobApplicationHrSideGet")
     Call<List<JobApplicantHrSideReponse>> JobApplicationHrSideGet(@Query("applicationid") int applicationid);
 
+    @GET("Job/WithCheckfilterJobGet")
+    Call<List<JobResponse>> WithCheckfilterJobGet(@Query("uid") int uid);
+
+    //---cv automation method
+    @FormUrlEncoded
+    @POST("Extra/WithUniversityNewNewJobFileApplicationWithFilterPost2")
+    Call<String> WithUniversityNewNewJobFileApplicationWithFilterPost2(@Field("Jid") int Jid, @Field("Uid") int Uid);
+
 }
 
 

@@ -28,6 +28,8 @@ import com.example.biithrmsystem.commons.SharedPreferences;
 import com.example.biithrmsystem.databinding.FragmentJobDetailBinding;
 import com.example.biithrmsystem.repositories.Repository;
 
+import java.util.ArrayList;
+
 
 public class JobDetailFragment extends Fragment {
     Repository repository;
@@ -37,12 +39,16 @@ public class JobDetailFragment extends Fragment {
     private int jobId = 0;
     private String jobTitle = "";
     private FragmentJobDetailBinding binding;
+    private ArrayList<String> instituteList;
+    StringBuilder sb;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestFileIntent = new Intent(Intent.ACTION_PICK);
         requestFileIntent.setType("image/jpg");
+        instituteList = new ArrayList<>();
+        sb = new StringBuilder();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,10 +62,14 @@ public class JobDetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         jobId = requireArguments().getInt(JOB_ID, 0);
         repository.jobDetail(jobId);
+        repository.EducationGet(SharedPreferences.GetLogInUserId());
 
         ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
                 uri -> {
-                    uriOfDocument = uri;
+                    if (uri != null) {
+                        uriOfDocument = uri;
+                        binding.textCvSelected.setVisibility(View.INVISIBLE);
+                    }
                     Log.e("Uri", "onActivityResult: " + uri);
                 });
 
@@ -75,18 +85,24 @@ public class JobDetailFragment extends Fragment {
 
         binding.btnEdit.setOnClickListener(v -> {
             requireActivity().overridePendingTransition(R.anim.slide_in_top, R.anim.slide_in_bottom);
-
             binding.cvLayout.setVisibility(View.VISIBLE);
             binding.applicaitonProfile.setVisibility(View.GONE);
         });
         binding.btnUploadCv.setOnClickListener(v -> mGetContent.launch("application/pdf"));
         binding.btnSubmit.setOnClickListener(v -> {
-
             if (uriOfDocument != null) {
+                for (int i = 0; i < instituteList.size(); i++) {
+                    if (instituteList.get(i).equals("BIMS".toLowerCase()) || instituteList.get(i).equals("IQRA".toLowerCase()) || instituteList.get(i).equals("PRISTON".toLowerCase())) {
+                        dialogFilterApplyJOb(view, "For Current Institute You are Not Allowed to Apply");
+                        return;
+                    }
+                }
                 repository.JobFileApplicationPost(jobId, SharedPreferences.GetLogInUserId(), uriOfDocument.toString(), jobTitle);
+            //    repository.WithUniversityNewNewJobFileApplicationWithFilterPost2(jobId, SharedPreferences.GetLogInUserId());
+
             } else {
-                repository.JobFileApplicationPost(jobId, SharedPreferences.GetLogInUserId(), "no cv selected", jobTitle);
                 Function.showToast("Select Your Cv First", requireContext());
+                binding.textCvSelected.setVisibility(View.VISIBLE);
             }
         });
 
@@ -95,6 +111,16 @@ public class JobDetailFragment extends Fragment {
                 Function.showToast("" + s, requireContext());
             }
             dialog(view, s);
+        });
+        repository.educationList.observe(getViewLifecycleOwner(), educations -> {
+            instituteList.clear();
+            if (educations.size() > 0) {
+                for (int i = 0; i < educations.size(); i++) {
+                    instituteList.add(educations.get(i).getInstitute());
+                }
+                Log.e("Educaiton", "onChanged: " + educations.get(0).getInstitute());
+            }
+
         });
     }
 
@@ -123,6 +149,19 @@ public class JobDetailFragment extends Fragment {
                 })
                 .setNegativeButton("No", (dialogInterface, i) -> {
 
+                })
+                .show();
+    }
+
+
+    void dialogFilterApplyJOb(View view, String message) {
+        AlertDialog alertDialog = new AlertDialog.Builder(requireContext())
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Apply Error!")
+                .setMessage(message)
+                .setPositiveButton("Yes", (dialogInterface, i) -> {
+                })
+                .setNegativeButton("No", (dialogInterface, i) -> {
                 })
                 .show();
     }

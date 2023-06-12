@@ -99,6 +99,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:queryHint="Search Job..." />
 
+        <Button
+            android:id="@+id/btn_bestMatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:text="Best Match"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/jobSearchView" />
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progress_circular"
@@ -122,7 +131,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/jobSearchView"
+            app:layout_constraintTop_toBottomOf="@+id/btn_bestMatch"
             app:layout_constraintVertical_bias="0"
             tools:listitem="@layout/jobs_item_layout" />
 

@@ -135,15 +135,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <View
-                android:id="@+id/view"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/bg_login_edit_textt"
-                app:layout_constraintBottom_toBottomOf="@+id/spinner_degree"
-                app:layout_constraintEnd_toEndOf="@+id/spinner_degree"
-                app:layout_constraintStart_toStartOf="@+id/spinner_degree"
-                app:layout_constraintTop_toBottomOf="@+id/spinner_degree" />
 
             <Spinner
                 android:id="@+id/spinner_degree"
@@ -166,6 +157,15 @@
 
 
 
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_login_edit_textt"
+                app:layout_constraintBottom_toBottomOf="@+id/spinner_degree"
+                app:layout_constraintEnd_toEndOf="@+id/spinner_degree"
+                app:layout_constraintStart_toStartOf="@+id/spinner_degree"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_degree" />
             <Button
                 android:id="@+id/btn_submit"
                 android:layout_width="wrap_content"

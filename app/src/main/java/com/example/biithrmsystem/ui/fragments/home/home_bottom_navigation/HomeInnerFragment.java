@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.example.biithrmsystem.R;
 import com.example.biithrmsystem.adapter.AllJobsAdapter;
 import com.example.biithrmsystem.api.datamodel.JobResponse;
 import com.example.biithrmsystem.commons.Appconstants;
+import com.example.biithrmsystem.commons.SharedPreferences;
 import com.example.biithrmsystem.databinding.FragmentHomeInnerBinding;
 import com.example.biithrmsystem.repositories.Repository;
 
@@ -52,15 +54,17 @@ public class HomeInnerFragment extends Fragment implements AllJobsAdapter.ItemCl
         });
 
         repository.getAllJobsReponseMutableLiveData().observe(getViewLifecycleOwner(), allJobsReponse -> {
-            Log.e("mudassir", "onViewCreated: " + allJobsReponse);
+            Log.e("mahzaib", "onViewCreated: " + allJobsReponse);
             if (allJobsReponse != null) {
                 listOfAllJobResponses.clear();
                 listOfAllJobResponses.addAll(allJobsReponse);
                 binding.progressCircular.setVisibility(View.INVISIBLE);
                 initRecyclerView(listOfAllJobResponses);
+            } else {
+                Toast.makeText(requireContext(), "Complete Your Profile First", Toast.LENGTH_LONG).show();
             }
-
         });
+        binding.btnBestMatch.setOnClickListener(v -> repository.WithCheckfilterJobGet(SharedPreferences.GetLogInUserId()));
         binding.jobSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -70,9 +74,7 @@ public class HomeInnerFragment extends Fragment implements AllJobsAdapter.ItemCl
 
             @Override
             public boolean onQueryTextChange(String newText) {
-//              if (searchView.isExpanded() && TextUtils.isEmpty(newText)) {
                 callSearch(newText);
-//              }
                 return true;
             }
 
@@ -96,7 +98,6 @@ public class HomeInnerFragment extends Fragment implements AllJobsAdapter.ItemCl
         adapter.setClickListener(this);
         binding.allJobRv.setAdapter(adapter);
     }
-
     private void filter(String text) {
         ArrayList<JobResponse> filteredlist = new ArrayList<JobResponse>();
         for (JobResponse item : listOfAllJobResponses) {
@@ -111,5 +112,13 @@ public class HomeInnerFragment extends Fragment implements AllJobsAdapter.ItemCl
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (listOfAllJobResponses.size() > 0) {
+            binding.designLayout.setVisibility(View.INVISIBLE);
+            binding.recylerviewLayout.setVisibility(View.VISIBLE);
+        }
 
+    }
 }
